@@ -11,13 +11,56 @@
 
 #import <Foundation/Foundation.h>
 #import "SpotzConfiguration.h"
+#import "SpotzSiteDetails.h"
+#import "SpotzData.h"
 
+/**
+ *  Notification when client is within the geofenced area of a site. Only when geofence is specified
+ */
+extern NSString * const SpotzEnterSiteProximityNotification;
+
+/**
+ *  Notification when client is outside the geofenced area of a site. Only when geofence is specified
+ */
+extern NSString * const SpotzExitSiteProximityNotification;
+
+/**
+ *  Notification when client is within inside the current site's beacon.
+ */
+extern NSString * const SpotzEnterSiteNotification;
+
+/**
+ *  Notification when client is within outside the current site's beacon.
+ */
+extern NSString * const SpotzExitSiteNotification;
+
+/**
+ *  Notification when spotz is found. Spotz object will be attached to note.object if exists
+ */
+extern NSString * const SpotzInsideNotification;
+
+/**
+ *  Notification when previously found spotz is no longer detected.
+ */
+extern NSString * const SpotzOutsideNotification;
+
+/**
+ *  Notification when ranging information available
+ */
+extern NSString * const SpotzRangingNotification;
+
+@class SpotzSDK;
 @protocol SpotzSDKDelegate <NSObject>
+
+- (void) spotzInitSuccessful;
+- (void) spotzSiteInitSuccessful;
+- (void) spotzSiteInitFailed:(NSError *)error;
 @optional
-- (void) spotzInitSuccessfull;
 - (void) spotzInitFailed:(NSError *)error;
+- (void) spotzFailedWithError:(NSError *)error;
 - (void) spotzLocationServicesNotAuthorizedError;
 - (void) spotzLocationServicesNotEnabledError;
+
 //- (void) spotzPushNotificationRegistrationSuccess;
 //- (void) spotzPushNotificationRegistrationFailed:(NSError *)error;
 @end
@@ -41,10 +84,38 @@
 + (void) initWithProjectId:(NSString *)projectId projectKey:(NSString *)projectKey config:(NSDictionary *)config;
 
 /**
- *  Enables location services. If user has not yet enabled location services, this will prompt the permission dialog.
- *  This is required to be called prior to detecting user's location via geolocation or iBeacon.
+ *  Initialise location services and spots. This needs to be run at the point where you want to prompt user to enable
+ *  location services.
+ *  This will also download the closest site's data
  */
-- (void) locationServicesEnabled:(BOOL)enable;
+- (void) startSpotz;
+
+///**
+// *  Stop spotz from notifying the app of any Spotz's beacons/geolocation events
+// */
+//- (void) pauseSpotz;
+
+#pragma mark - Spotz Management
+
+/**
+ * Returns all spots retrieved based on the default/selected site. Returns nil if closest site is not known or
+ * spots have not yet been retrieved
+ */
+- (NSArray *) spotsAtCurrentSite;
+
+/**
+ * Returns the current closest site detected
+ */
+- (SpotzSiteDetails *) currentSite;
+
+/**
+ *  Manually download spots at a particular site
+ */
+- (void) retrieveSpotsAtSite:(NSString *)siteId withCompletion:(void(^)(NSError *error,NSArray *spots))completion;
+
+#pragma mark - Barcode/QR Scanner
+//- (void) scanQRScanner;
+//- (void) processQRWithCode:(NSString *)data;
 
 #pragma mark - Utility Helpers
 
