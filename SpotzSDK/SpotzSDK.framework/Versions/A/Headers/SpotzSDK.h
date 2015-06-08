@@ -60,9 +60,6 @@ extern NSString * const SpotzRangingNotification;
 - (void) spotzFailedWithError:(NSError *)error;
 - (void) spotzLocationServicesNotAuthorizedError;
 - (void) spotzLocationServicesNotEnabledError;
-
-//- (void) spotzPushNotificationRegistrationSuccess;
-//- (void) spotzPushNotificationRegistrationFailed:(NSError *)error;
 @end
 
 @interface SpotzSDK : NSObject
@@ -70,7 +67,7 @@ extern NSString * const SpotzRangingNotification;
 @property (nonatomic,assign) id<SpotzSDKDelegate> delegate;
 
 /**
- * Returns the singleton instance of SpotzPush
+ * Returns a singleton instance of SpotzPush
  */
 + (SpotzSDK *) shared;
 
@@ -81,11 +78,10 @@ extern NSString * const SpotzRangingNotification;
  *  @param appKey appKey provided by Localz
  *  @param options options for advance settings/debugging
  */
-+ (void) initWithProjectId:(NSString *)projectId projectKey:(NSString *)projectKey config:(NSDictionary *)config;
++ (void) initWithAppId:(NSString *)appId appKey:(NSString *)appKey delegate:(id)delegate config:(NSDictionary *)config;
 
 /**
- *  Initialise location services and spots. This needs to be run at the point where you want to prompt user to enable
- *  location services.
+ *  Initialise location services and spots. This should be run at the point where user is to be prompted to enable location services
  *  This will also download the closest site's data
  */
 - (void) startSpotz;
@@ -109,13 +105,14 @@ extern NSString * const SpotzRangingNotification;
 - (SpotzSiteDetails *) currentSite;
 
 /**
- *  Manually download spots at a particular site
+ *  Manually download spots registered at a particular site
  */
 - (void) retrieveSpotsAtSite:(NSString *)siteId withCompletion:(void(^)(NSError *error,NSArray *spots))completion;
 
-#pragma mark - Barcode/QR Scanner
-//- (void) scanQRScanner;
-//- (void) processQRWithCode:(NSString *)data;
+/**
+ * Reset spots detected. This will re-trigger all the notifications if the device is within a particular spot.
+ */
+- (void) resetSpots;
 
 #pragma mark - Utility Helpers
 

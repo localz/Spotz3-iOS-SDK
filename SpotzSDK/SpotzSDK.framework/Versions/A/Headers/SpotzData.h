@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SpotzBeaconDetails.h"
 
-@interface SpotzData : NSObject
+@interface SpotzData : NSObject<NSCoding>
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSDictionary *metadata;
 @property (nonatomic,strong) NSString *spotId;
-@property (nonatomic) float rawRSSI;
-@property (nonatomic) float rawDistance;
-@property (nonatomic) float distance;
+@property (nonatomic,strong) NSArray *beacons;
 @end
