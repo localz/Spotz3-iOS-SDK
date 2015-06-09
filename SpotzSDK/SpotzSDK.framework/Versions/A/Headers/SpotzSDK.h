@@ -10,7 +10,6 @@
 @import CoreBluetooth;
 
 #import <Foundation/Foundation.h>
-#import "SpotzConfiguration.h"
 #import "SpotzSiteDetails.h"
 #import "SpotzData.h"
 
