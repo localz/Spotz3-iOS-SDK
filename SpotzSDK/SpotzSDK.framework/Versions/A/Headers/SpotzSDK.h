@@ -106,7 +106,7 @@ extern NSString * const SpotzRangingNotification;
 /**
  *  Manually download spots registered at a particular site
  */
-- (void) retrieveSpotsAtSite:(NSString *)siteId withCompletion:(void(^)(NSError *error,NSArray *spots))completion;
+- (void) retrieveSpotsAtSite:(NSString *)siteId completion:(void(^)(NSError *error,NSArray *spots))completion;
 
 /**
  * Reset spots detected. This will re-trigger all the notifications if the device is within a particular spot.
