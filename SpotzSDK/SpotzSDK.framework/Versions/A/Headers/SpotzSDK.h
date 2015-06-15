@@ -113,6 +113,11 @@ extern NSString * const SpotzRangingNotification;
  */
 - (void) resetSpots;
 
+/**
+ * Stop spots from all monitoring
+ */
+- (void) stopSpotz;
+
 #pragma mark - Utility Helpers
 
 + (BOOL) isBackgroundRefreshEnabled;
