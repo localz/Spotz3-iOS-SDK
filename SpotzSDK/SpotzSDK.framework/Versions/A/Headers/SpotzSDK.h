@@ -118,6 +118,11 @@ extern NSString * const SpotzRangingNotification;
  */
 - (void) stopSpotz;
 
+/**
+ * Unique device ID assigned to this device
+ */
+- (NSString *)deviceId;
+
 #pragma mark - Utility Helpers
 
 + (BOOL) isBackgroundRefreshEnabled;
