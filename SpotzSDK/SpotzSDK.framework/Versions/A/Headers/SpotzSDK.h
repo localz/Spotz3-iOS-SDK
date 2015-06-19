@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "SpotzSiteDetails.h"
 #import "SpotzData.h"
+#import "SpotzBeaconDetails.h"
 
 /**
  *  Notification when client is within the geofenced area of a site. Only when geofence is specified
@@ -49,15 +50,38 @@ extern NSString * const SpotzOutsideNotification;
 extern NSString * const SpotzRangingNotification;
 
 @class SpotzSDK;
+
 @protocol SpotzSDKDelegate <NSObject>
 
+/**
+ * Successfully initialised the SDK
+ */
 - (void) spotzInitSuccessful;
+/**
+ * Site initialisation was successful. All related spots have been downloaded and registered.
+ */
 - (void) spotzSiteInitSuccessful;
+/**
+ * Site initialisation failed. Check that location servies is authorised and enabled. 
+ * You could present user with list of sites to choose from and call changeCurrentSite:completion: to register the site and its spots.
+ */
 - (void) spotzSiteInitFailed:(NSError *)error;
 @optional
+/**
+ * Spotz initialisation failed
+ */
 - (void) spotzInitFailed:(NSError *)error;
+/**
+ * Generic errors can be captured in here
+ */
 - (void) spotzFailedWithError:(NSError *)error;
+/**
+ * Location services is not authorised. Prompt user to re-enable location and call startSpotz to retry
+ */
 - (void) spotzLocationServicesNotAuthorizedError;
+/*
+ * Location services is not enabled. Prompt user to re-enable location and call startSpotz to retry
+ */
 - (void) spotzLocationServicesNotEnabledError;
 @end
 
@@ -85,11 +109,6 @@ extern NSString * const SpotzRangingNotification;
  */
 - (void) startSpotz;
 
-///**
-// *  Stop spotz from notifying the app of any Spotz's beacons/geolocation events
-// */
-//- (void) pauseSpotz;
-
 #pragma mark - Spotz Management
 
 /**
@@ -99,14 +118,19 @@ extern NSString * const SpotzRangingNotification;
 - (NSArray *) spotsAtCurrentSite;
 
 /**
- * Returns the current closest site detected
+ * Returns the current registered site
  */
 - (SpotzSiteDetails *) currentSite;
 
 /**
- *  Manually download spots registered at a particular site
+ * Returns all available sites
  */
-- (void) retrieveSpotsAtSite:(NSString *)siteId completion:(void(^)(NSError *error,NSArray *spots))completion;
+- (NSArray *) availableSites;
+
+/**
+ *  Set current site to the given site and monitor all trigger points inside the site.
+ */
+- (void) changeCurrentSite:(NSString *)siteId completion:(void(^)(NSError *error))completion;
 
 /**
  * Reset spots detected. This will re-trigger all the notifications if the device is within a particular spot.
