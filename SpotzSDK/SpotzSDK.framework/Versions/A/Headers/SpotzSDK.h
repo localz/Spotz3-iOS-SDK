@@ -138,6 +138,11 @@ extern NSString * const SpotzRangingNotification;
 - (void) resetSpots;
 
 /**
+ * Recheck existing spots. This will re-trigger all the notifications if the device is within a particular spot.
+ */
+- (void) recheckSpots;
+
+/**
  * Stop spots from all monitoring
  */
 - (void) stopSpotz;
