@@ -152,6 +152,12 @@ extern NSString * const SpotzRangingNotification;
  */
 - (NSString *)deviceId;
 
+/**
+ * Record customer ratings
+ * rating is mandatory
+ */
+- (void) sendFeedbackWithRating:(int)rating message:(NSString *)message attributes:(NSArray *)attributes module:(NSString *)module completion:(void(^)(NSError *error,NSString *feedbackId))completion;
+
 #pragma mark - Utility Helpers
 
 + (BOOL) isBackgroundRefreshEnabled;
