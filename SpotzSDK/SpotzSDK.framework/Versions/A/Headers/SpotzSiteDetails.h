@@ -13,4 +13,5 @@
 @property (nonatomic,copy,readwrite) NSString *name;
 @property (nonatomic,copy,readwrite) NSString *address1;
 @property (nonatomic,copy,readwrite) NSString *address2;
+@property (nonatomic,copy,readwrite) NSString *tz;
 @end

@@ -66,6 +66,12 @@ extern NSString * const SpotzRangingNotification;
  * You could present user with list of sites to choose from and call changeCurrentSite:completion: to register the site and its spots.
  */
 - (void) spotzSiteInitFailed:(NSError *)error;
+
+/**
+ * When site change is detected, Spotz will register the new site and invoke this delegate.
+ */
+- (void) spotzSiteChangedToSite:(SpotzSiteDetails *)newSite error:(NSError *)error;
+
 @optional
 /**
  * Spotz initialisation failed
@@ -130,7 +136,7 @@ extern NSString * const SpotzRangingNotification;
 /**
  *  Set current site to the given site and monitor all trigger points inside the site.
  */
-- (void) changeCurrentSite:(NSString *)siteId completion:(void(^)(NSError *error))completion;
+- (void) changeCurrentSiteId:(NSString *)siteId completion:(void(^)(NSError *error))completion;
 
 /**
  * Reset spots detected. This will re-trigger all the notifications if the device is within a particular spot.
@@ -141,6 +147,11 @@ extern NSString * const SpotzRangingNotification;
  * Recheck existing spots. This will re-trigger all the notifications if the device is within a particular spot.
  */
 - (void) recheckSpots;
+
+/**
+ * Stops all monitoring of triggers
+ */
+- (void) clearSpotsMonitoring;
 
 /**
  * Stop spots from all monitoring
