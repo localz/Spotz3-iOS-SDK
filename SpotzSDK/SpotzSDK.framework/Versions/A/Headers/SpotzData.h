@@ -8,10 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "SpotzBeaconDetails.h"
+#import "SpotzGeoDetails.h"
 
 @interface SpotzData : NSObject<NSCoding>
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSDictionary *metadata;
 @property (nonatomic,strong) NSString *spotId;
 @property (nonatomic,strong) NSArray *beacons;
+@property (nonatomic,strong) SpotzGeoDetails *geo;
+@property (nonatomic) BOOL isRanging;
+
+/**
+ *  Approximate distance between beacon and the device. This should only be used as a reference
+ *  as different source of beacon may transmit different signal strength.
+ *  @return approximate distance in meters. Returns -1 if not found.
+ */
+- (float) distance;
 @end

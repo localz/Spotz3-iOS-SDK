@@ -10,167 +10,133 @@
 @import CoreBluetooth;
 
 #import <Foundation/Foundation.h>
+#import "SpotzErrorType.h"
 #import "SpotzSiteDetails.h"
 #import "SpotzData.h"
 #import "SpotzBeaconDetails.h"
-
-/**
- *  Notification when client is within the geofenced area of a site. Only when geofence is specified
- */
-extern NSString * const SpotzEnterSiteProximityNotification;
-
-/**
- *  Notification when client is outside the geofenced area of a site. Only when geofence is specified
- */
-extern NSString * const SpotzExitSiteProximityNotification;
-
-/**
- *  Notification when client is within inside the current site's beacon.
- */
-extern NSString * const SpotzEnterSiteNotification;
-
-/**
- *  Notification when client is within outside the current site's beacon.
- */
-extern NSString * const SpotzExitSiteNotification;
-
-/**
- *  Notification when spotz is found. Spotz object will be attached to note.object if exists
- */
-extern NSString * const SpotzInsideNotification;
-
-/**
- *  Notification when previously found spotz is no longer detected.
- */
-extern NSString * const SpotzOutsideNotification;
-
-/**
- *  Notification when ranging information available
- */
-extern NSString * const SpotzRangingNotification;
+#import "SpotzConstant.h"
+#import "SpotzProtocol.h"
 
 @class SpotzSDK;
 
-@protocol SpotzSDKDelegate <NSObject>
-
 /**
- * Successfully initialised the SDK
+ *  SpotzSDK is the main class that handles the integration between client and Localz's Spotz Platform
  */
-- (void) spotzInitSuccessful;
-/**
- * Site initialisation was successful. All related spots have been downloaded and registered.
- */
-- (void) spotzSiteInitSuccessful;
-/**
- * Site initialisation failed. Check that location servies is authorised and enabled. 
- * You could present user with list of sites to choose from and call changeCurrentSite:completion: to register the site and its spots.
- */
-- (void) spotzSiteInitFailed:(NSError *)error;
-
-/**
- * When site change is detected, Spotz will register the new site and invoke this delegate.
- */
-- (void) spotzSiteChangedToSite:(SpotzSiteDetails *)newSite error:(NSError *)error;
-
-@optional
-/**
- * Spotz initialisation failed
- */
-- (void) spotzInitFailed:(NSError *)error;
-/**
- * Generic errors can be captured in here
- */
-- (void) spotzFailedWithError:(NSError *)error;
-/**
- * Location services is not authorised. Prompt user to re-enable location and call startSpotz to retry
- */
-- (void) spotzLocationServicesNotAuthorizedError;
-/*
- * Location services is not enabled. Prompt user to re-enable location and call startSpotz to retry
- */
-- (void) spotzLocationServicesNotEnabledError;
-@end
-
 @interface SpotzSDK : NSObject
 
-@property (nonatomic,assign) id<SpotzSDKDelegate> delegate;
-
 /**
- * Returns a singleton instance of SpotzPush
+ *  Returns a singleton instance of Spotz
+ *
+ *  @return Returns a singleton instance of SpotzSDK
  */
 + (SpotzSDK *) shared;
 
 /**
- *  Initialise service and register device with the given API Key and client Key. Must be run to initialise SpotzSDK.
+ *  Initialises the service and registers the device with the given API Key and client Key. Must be run to initialise SpotzSDK.
  *
  *  @param appId appId provided by Localz
  *  @param appKey appKey provided by Localz
- *  @param options options for advance settings/debugging
+ *  @param delegate the delegate class that adopts SpotzSDKDelegate protocol
+ *  @param config options for additional setup
+ *
+ *  @warning You will need to call @link startSpotz @/link in order to start monitoring for Spots. The startSpotz should be run inside or after spotzInitSuccessful delegate is called.
  */
 + (void) initWithAppId:(NSString *)appId appKey:(NSString *)appKey delegate:(id)delegate config:(NSDictionary *)config;
 
 /**
- *  Initialise location services and spots. This should be run at the point where user is to be prompted to enable location services
- *  This will also download the closest site's data
+ *  Initialises location services and Spots. This must be run to register all Spots. We recommend this to be called at the point where you are ready to prompt user to enable location services (if not yet enabled previously). This will also download the closest site's data
  */
 - (void) startSpotz;
 
 #pragma mark - Spotz Management
 
 /**
- * Returns all spots retrieved based on the default/selected site. Returns nil if closest site is not known or
- * spots have not yet been retrieved
+ *  Returns all spots retrieved based on the default/selected site.
+ *  @return Retuns array of SpotzData at the current site. Returns nil if closest site is unknown or spots have not yet been retrieved
  */
 - (NSArray *) spotsAtCurrentSite;
 
 /**
- * Returns the current registered site
+ *  Returns the current registered site details
+ *
+ *  @return Returns the site details of the current site
  */
 - (SpotzSiteDetails *) currentSite;
 
 /**
- * Returns all available sites
+ *  Retrieves all available sites
+ *
+ *  @return Returns an array of available SpotzSiteDetails
  */
 - (NSArray *) availableSites;
 
 /**
- *  Set current site to the given site and monitor all trigger points inside the site.
+ *  Change current site to the given siteId. Upon successful update, it will monitor all Spots inside the site and retrigger the spotzSiteInitSuccessful delegate as well as spotzSiteChangedToSite:error: delegate
+ *
+ *  @param siteId     siteId to change to
+ *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: The error object describing the error that occurred, or nil if no errors.
  */
 - (void) changeCurrentSiteId:(NSString *)siteId completion:(void(^)(NSError *error))completion;
 
 /**
- * Reset spots detected. This will re-trigger all the notifications if the device is within a particular spot.
+ * Reset Spots detected. This will re-trigger all the notifications if the device is within a particular spot.
  */
 - (void) resetSpots;
 
 /**
- * Recheck existing spots. This will re-trigger all the notifications if the device is within a particular spot.
+ * Recheck status of registered Spots. This will re-trigger all notifications if the device is within a particular spot.
  */
 - (void) recheckSpots;
 
 /**
- * Stops all monitoring of triggers
+ * Clears all spots monitoring.
  */
 - (void) clearSpotsMonitoring;
 
 /**
- * Stop spots from all monitoring
+ * Stop spotz service. Run startSpotz to restart the service.
  */
 - (void) stopSpotz;
 
 /**
- * Unique device ID assigned to this device
+ *  Returns the device ID assigned to this device
+ *
+ *  @return The Spotz's device ID assigned to this device
  */
 - (NSString *)deviceId;
 
 /**
- * Record customer ratings
- * rating is mandatory
+ *  Records feedback ratings for the project/app. This is a simple rating recording function and takes in a numerical rating value which range is to be defined by the developer
+ *
+ *  @param rating     numerical rating value
+ *  @param message    (optional) additional feedback message
+ *  @param attributes (optional) additional information to be passed as part of the feedback, e.g. answers to a set of questionnaires
+ *  @param module     (optional) the module name associated with this rating. e.g. Retail Module, Click&Collect, etc
+ *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the error object describing the error that occurred or nil if no errors, and a feedbackId which is returned by Spotz Platform once feedback is successfully recorded.
  */
 - (void) sendFeedbackWithRating:(int)rating message:(NSString *)message attributes:(NSArray *)attributes module:(NSString *)module completion:(void(^)(NSError *error,NSString *feedbackId))completion;
 
-#pragma mark - Utility Helpers
+/**
+ *  Associates the current device with a custom identity. Note that if the app is reinstalled, deviceId will need to be re-associated with the identity.
+ *
+ *  @param identityId identity to be assigned to this device e.g. customerId/token/email
+ *  @param attributes additional information to be associated with this device. Useful when passing additional info to third party extensions.
+ *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the error object describing the error that occurred.
+ */
+- (void) identity:(NSString *)identityId completion:(void(^)(NSError *error))completion;
 
-+ (BOOL) isBackgroundRefreshEnabled;
+/**
+ *  Removes identity that is mapped to this device
+ *
+ *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the error object describing the error that occurred.
+ */
+- (void) removeIdentityWithCompletion:(void(^)(NSError *error))completion;
 
+/**
+ *  Updates additional data for the given extension
+ *  @param name Extension name in spotz console
+ *  @param type Extension type in spotz console
+ *  @param data Extension data (key/value) to be attached to this device
+ */
+- (void) updateExtension:(NSString *)name type:(NSString *)type data:(NSDictionary *)data;
 @end

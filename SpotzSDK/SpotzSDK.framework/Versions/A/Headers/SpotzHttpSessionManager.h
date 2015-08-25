@@ -10,6 +10,8 @@
 
 @interface SpotzHttpSessionManager : AFHTTPSessionManager
 
+@property (nonatomic) BOOL isConnected;
+
 + (SpotzHttpSessionManager *) instanceWithBaseURL:(NSURL *)baseURL projectId:(NSString *)projectId projectKey:(NSString *)projectKey;
 - (SpotzHttpSessionManager *) initWithBaseURL:(NSURL *)url projectId:(NSString *)projectId projectKey:(NSString *)projectKey;
 
@@ -25,4 +27,8 @@
 - (NSURLSessionDataTask *)apiMultipartPOST:(NSString *)URLString fileName:(NSString *)filename fileData:(NSData *)fileData mime:(NSString *)mimeType parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *))failure;
 
 - (void) downloadImageFromURL:(NSURL *)url completion:(void (^)(NSError *error, UIImage *image)) completion;
+
+// varios ways to check for network availability. Pick one.
+- (BOOL) isNetworkAvailable;
+- (BOOL) isConnectionAvailable;
 @end
