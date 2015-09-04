@@ -12,7 +12,7 @@
 
 @interface SpotzData : NSObject<NSCoding>
 @property (nonatomic,strong) NSString *name;
-@property (nonatomic,strong) NSDictionary *metadata;
+@property (nonatomic,strong) NSDictionary *attributes;
 @property (nonatomic,strong) NSString *spotId;
 @property (nonatomic,strong) NSArray *beacons;
 @property (nonatomic,strong) SpotzGeoDetails *geo;
@@ -24,4 +24,5 @@
  *  @return approximate distance in meters. Returns -1 if not found.
  */
 - (float) distance;
+- (NSDictionary *) metadata;
 @end

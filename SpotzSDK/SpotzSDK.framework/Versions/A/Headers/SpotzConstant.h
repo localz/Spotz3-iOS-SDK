@@ -30,4 +30,11 @@ extern NSString * const SpotzOutsideNotification;
  */
 extern NSString * const SpotzRangingNotification;
 
+extern NSString * const SpotzInitNotification;
+extern NSString * const SpotzErrorNotification;
+extern NSString * const SpotzSiteChangedNotification;
+
+extern NSString * const SpotzBluetoothServicesStateChangeNotification;
+extern NSString * const SpotzLocationServicesStateChangeNotification;
+
 @end
