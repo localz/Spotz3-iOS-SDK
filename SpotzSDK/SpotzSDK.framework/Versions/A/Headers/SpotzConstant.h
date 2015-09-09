@@ -30,6 +30,11 @@ extern NSString * const SpotzOutsideNotification;
  */
 extern NSString * const SpotzRangingNotification;
 
+/**
+ *  Notification when a returned data exists during enter/exit Spot events
+ */
+extern NSString * const SpotzExtensionNotification;
+
 extern NSString * const SpotzInitNotification;
 extern NSString * const SpotzErrorNotification;
 extern NSString * const SpotzSiteChangedNotification;
