@@ -31,6 +31,16 @@ extern NSString * const SpotzOutsideNotification;
 extern NSString * const SpotzRangingNotification;
 
 /**
+ *  Notification when site geofence is enabled, and enter event is detected
+ */
+extern NSString * const SpotzInsideSiteGeoNotification;
+
+/**
+ *  Notification when site geofence is enabled, and exit event is detected
+ */
+extern NSString * const SpotzOutsideSiteGeoNotification;
+
+/**
  *  Notification when a returned data exists during enter/exit Spot events
  */
 extern NSString * const SpotzExtensionNotification;
