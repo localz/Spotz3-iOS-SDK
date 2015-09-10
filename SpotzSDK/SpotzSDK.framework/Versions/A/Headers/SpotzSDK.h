@@ -48,6 +48,11 @@
  */
 - (void) startSpotz;
 
+/**
+ *  Re-Initialises location services and Spots. This must be run to register all Spots. We recommend this to be called at the point where you are ready to prompt user to enable location services (if not yet enabled previously). This will also download the closest site's data
+ */
+- (void) restartSpotz;
+
 #pragma mark - Spotz Management
 
 /**
