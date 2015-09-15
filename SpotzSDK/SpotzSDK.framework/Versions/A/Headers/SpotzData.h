@@ -14,6 +14,7 @@
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSDictionary *attributes;
 @property (nonatomic,strong) NSString *spotId;
+@property (nonatomic,strong) NSString *siteId;
 @property (nonatomic,strong) NSArray *beacons;
 @property (nonatomic,strong) SpotzGeoDetails *geo;
 @property (nonatomic) BOOL isRanging;

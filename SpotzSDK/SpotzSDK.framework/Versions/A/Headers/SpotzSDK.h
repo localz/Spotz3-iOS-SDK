@@ -84,6 +84,20 @@
 - (void) changeCurrentSiteId:(NSString *)siteId completion:(void(^)(NSError *error))completion;
 
 /**
+ * Returns true if device is inside the spot
+ * @param name Spot's name
+ * @preturn true if inside, false if outside or not yet detected
+ */
+- (BOOL) isInsideSpotWithName:(NSString *)name;
+
+/**
+ * Returns true if device is inside the spot
+ * @param name Spot's id
+ * @preturn true if inside, false if outside or not yet detected
+ */
+- (BOOL) isInsideSpotWithId:(NSString *)spotId;
+
+/**
  * Reset Spots detected. This will re-trigger all the notifications if the device is within a particular spot.
  */
 - (void) resetSpots;
