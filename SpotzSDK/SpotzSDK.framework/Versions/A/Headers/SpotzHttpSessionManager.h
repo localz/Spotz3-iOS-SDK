@@ -8,8 +8,12 @@
 
 #import "AFHTTPSessionManager.h"
 
-@interface SpotzHttpSessionManager : AFHTTPSessionManager
+@protocol SpotzHttpSessionManagerDelegate<NSObject>
+- (void) networkConnectionChanged:(BOOL) isConnected;
+@end
 
+@interface SpotzHttpSessionManager : AFHTTPSessionManager
+@property (nonatomic,assign) id<SpotzHttpSessionManagerDelegate> delegate;
 @property (nonatomic) BOOL isConnected;
 
 + (SpotzHttpSessionManager *) instanceWithBaseURL:(NSURL *)baseURL projectId:(NSString *)projectId projectKey:(NSString *)projectKey;

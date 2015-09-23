@@ -1,10 +1,14 @@
-//
-//  SpotzSDK.h
-//  SpotzSDK
-//
-//  Created by Melvin Artemas on 17/04/2015.
-//  Copyright (c) 2015 Localz Pty Ltd. All rights reserved.
-//
+/*
+ * (C) 2015 Localz Pty Ltd
+ *
+ * [All rights reserved]. This product and related documentation are protected
+ * by copyright restricting its use, copying, distribution, and decompilation.
+ * No part of this product or related documentation may be reproduced in any
+ * form by any means without prior written authorization of Localz.
+ * Unless otherwise arranged, third parties may not
+ * have access to this product or related documents.
+ */
+
 @import UIKit;
 @import CoreLocation;
 @import CoreBluetooth;
@@ -98,6 +102,13 @@
 - (BOOL) isInsideSpotWithId:(NSString *)spotId;
 
 /**
+ * Returns true if device is inside a spot with the given site ID
+ * @param name Site ID
+ * @preturn true if inside, false if outside or not yet detected
+ */
+- (BOOL) isInsideSpotAtSiteId:(NSString *)siteId;
+
+/**
  * Reset Spots detected. This will re-trigger all the notifications if the device is within a particular spot.
  */
 - (void) resetSpots;
@@ -133,7 +144,7 @@
  *  @param module     (optional) the module name associated with this rating. e.g. Retail Module, Click&Collect, etc
  *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the error object describing the error that occurred or nil if no errors, and a feedbackId which is returned by Spotz Platform once feedback is successfully recorded.
  */
-- (void) sendFeedbackWithRating:(int)rating message:(NSString *)message attributes:(NSArray *)attributes module:(NSString *)module completion:(void(^)(NSError *error,NSString *feedbackId))completion;
+- (void) sendFeedbackWithRating:(int)rating message:(NSString *)message attributes:(NSDictionary *)attributes module:(NSString *)module completion:(void(^)(NSError *error,NSString *feedbackId))completion;
 
 /**
  *  Associates the current device with a custom identity. Note that if the app is reinstalled, deviceId will need to be re-associated with the identity.
