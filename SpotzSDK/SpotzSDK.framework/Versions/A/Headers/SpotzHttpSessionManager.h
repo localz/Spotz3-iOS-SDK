@@ -10,6 +10,9 @@
 
 @protocol SpotzHttpSessionManagerDelegate<NSObject>
 - (void) networkConnectionChanged:(BOOL) isConnected;
+@optional
+- (NSDictionary *) additionalHeader;
+- (NSDictionary *) additionalSecureHeader;
 @end
 
 @interface SpotzHttpSessionManager : AFHTTPSessionManager
