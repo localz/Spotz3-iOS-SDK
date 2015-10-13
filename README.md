@@ -5,13 +5,13 @@ Spotz SDK
 
 Just add the following line to your Podfile:
 ```
-pod 'SpotzSDK', :git => 'https://github.com/localz/Spotz3-iOS-SDK.git'
+pod 'SpotzSDK', :git => 'https://github.com/localz/Spotz-iOS-SDK.git'
 ```
 
 How to use the SDK
 ==================
 
-**Currently only devices that support Bluetooth Low Energy (iPhone 4s or above, running iOS 7 or better) are able to make use of the Spotz SDK**. It is safe to include the SDK on earlier versions of iOS or devices that don't support Bluetooth Low Energy.
+**Currently only devices that support Bluetooth Low Energy (iPhone 4s or above, running iOS 7 or better) are able to make use of the Spotz SDK**. It is safe to include the SDK on earlier versions of iOS or devices that don't support Bluetooth Low Energy. 
 
 There are only 4 actions to implement - **configure, initialize, start services and listen!**
 
@@ -27,15 +27,16 @@ NSLocationAlwaysUsageDescription
 
 **2. Initialize the Spotz SDK**
 
-In AppDelegate's didFinishLaunchingWithOptions add the following:
+Import the SpotzSDK header into the AppDelegate, then in the didFinishLaunchingWithOptions method add the following:
+
 Swift
 ```
-SpotzSDK.initWithAppId("<Enter your app ID here>", appKey: "<Enter your app key here>", delegate: self, config:nil)
+SpotzSDK.initializeWithAppId("<Enter your app ID here>", clientKey: "<Enter your client key here>", delegate: self, withOptions:nil)
 ```
 
 Objective-C
 ```
-[SpotzSDK initWithAppId:@"<Enter your app ID here>" appKey:@"<Enter your app key here>" delegate:self config:nil];
+[SpotzSDK initializeWithAppId:@"<Enter your app ID here>" clientKey:@"<Enter your client key here>" delegate:self withOptions:nil];
 ```
 
 When initialization is successful, it will call the spotzSDKInitSuccessfull delegate method
@@ -44,31 +45,44 @@ When initialization is successful, it will call the spotzSDKInitSuccessfull dele
 
 Swift
 ```
-func spotzInit(error: NSError!) {
-    if(!error)
+func spotzInit(error: NSError?)
+{
+    if let error = error
     {
-        // this will prompt user to enable location services. This method can be called separately.
-        SpotzSDK.shared().startSpotz();
+        NSLog("Error initializing spot %@",error)
     }
     else
     {
-        NSLog("Error initializing spot %@",error);
+        SpotzSDK.shared().startSpotz()
     }
 }
 
-func spotzSiteChangedToSite(newSite: SpotzSiteDetails,error: NSError!)
+func spotzSiteInit(error: NSError?)
 {
-    if(error)
-        NSLog("Error updating to new site %@",newSite.siteId);
-    else
-        NSLog("Updated to new site %@",newSite.siteId);
+    if let error = error
+    {
+        NSLog("Error initalizing spotz sites %@",error)
+    }
 }
+
+func spotzSiteChangedToSite(newSite: SpotzSiteDetails!, error: NSError?)
+{
+    if let error = error
+    {
+        NSLog("Error updating to new site %@. %@",newSite.siteId, error);
+    }
+    else
+    {
+        NSLog("Updated to new site %@",newSite.siteId);
+    }
+}
+
 ```
 
 Objective-C
 ```
-#pragma mark - SpotzSDK delegates
-- (void)spotzInitSuccessful {
+- (void)spotzInit:(NSError *)error
+{
     if(!error)
     {
         [[SpotzSDK shared] startSpotz];
@@ -79,12 +93,24 @@ Objective-C
     }
 }
 
-- (void) spotzSiteChangedToSite:(SpotzSiteDetails *)newSite error:(NSError *)error
+- (void)spotzSiteInit:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"Error initalizing spotz sites");
+    }
+}
+
+- (void)spotzSiteChangedToSite:(SpotzSiteDetails *)newSite error:(NSError *)error
 {
     if(error)
+    {
         NSLog(@"Error updating to new site %@",newSite.siteId);
+    }
     else
+    {
         NSLog(@"Updated to new site %@",newSite.siteId);
+    }
 }
 ```
 
