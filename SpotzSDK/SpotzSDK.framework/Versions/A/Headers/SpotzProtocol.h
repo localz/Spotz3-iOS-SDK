@@ -28,7 +28,7 @@
 - (void) spotzSiteInit:(NSError *)error;
 
 /**
- *  This is called when site has changed. Will not be called for the initial site setup. Listen in @link spotzSiteInitSuccessful @/link instead.
+ *  This is called when site has changed. Will not be called for the initial site setup. Listen in @link spotzSiteInit@/link instead.
  *
  *  @param newSite The new site's details
  *  @param error   Contains the error object if failed, or nil if successful

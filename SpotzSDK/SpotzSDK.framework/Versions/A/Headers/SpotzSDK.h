@@ -169,4 +169,21 @@
  *  @param data Extension data (key/value) to be attached to this device
  */
 - (void) updateExtension:(NSString *)name type:(NSString *)type data:(NSDictionary *)data;
+
+/**
+ * Checks status of location services
+ * @return enable is true if service is on, false if not.
+ */
+- (BOOL) checkLocationServicesStatus:(void(^)(BOOL enable,CLAuthorizationStatus state))completion;
+
+/**
+ * Returns bluetooth state
+ * @return enable is true if it is on, false if not.
+ */
+- (BOOL) checkBluetoothEnabled:(void(^)(BOOL enable,CBCentralManagerState state))completion;
+
+/**
+ * Prompt user to enable location. It will only prompts user when location status is not yet determined.
+ */
+- (void) requestLocationServicesPrompt;
 @end

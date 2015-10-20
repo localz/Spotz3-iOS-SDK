@@ -36,6 +36,6 @@
 - (void) downloadImageFromURL:(NSURL *)url completion:(void (^)(NSError *error, UIImage *image)) completion;
 
 // varios ways to check for network availability. Pick one.
-- (BOOL) isNetworkAvailable;
-- (BOOL) isConnectionAvailable;
+//- (BOOL) isNetworkAvailable;
+//- (BOOL) isConnectionAvailable;
 @end
