@@ -1,0 +1,1 @@
+../../../../SpotzSDK/SpotzSDK/SpotzSDK.framework/Versions/A/Headers/SpotzGeoDetails.h

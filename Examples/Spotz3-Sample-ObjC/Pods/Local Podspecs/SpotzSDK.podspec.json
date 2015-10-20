@@ -1,0 +1,38 @@
+{
+  "name": "SpotzSDK",
+  "platforms": {
+    "ios": "8.0"
+  },
+  "license": {
+    "type": "Commercial",
+    "text": "\t\t\tCopyright 2015 Localz Pty Ltd.\n"
+  },
+  "version": "3.1.0.0",
+  "summary": "iOS library for Localz Platform",
+  "homepage": "http://localz.com",
+  "authors": {
+    "Localz Pty Ltd": "info@localz.com"
+  },
+  "xcconfig": {
+    "FRAMEWORK_SEARCH_PATHS": "$(inherited)"
+  },
+  "preserve_paths": "SpotzSDK.framework",
+  "vendored_frameworks": "SpotzSDK/SpotzSDK.framework",
+  "requires_arc": true,
+  "frameworks": [
+    "CoreLocation",
+    "SystemConfiguration",
+    "Foundation"
+  ],
+  "dependencies": {
+    "AFNetworking": [
+
+    ],
+    "CocoaLumberjack": [
+
+    ],
+    "YapDatabase": [
+
+    ]
+  }
+}
