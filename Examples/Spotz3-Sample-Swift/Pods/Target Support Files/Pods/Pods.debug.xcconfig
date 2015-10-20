@@ -1,0 +1,6 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$(PODS_ROOT)/SpotzSDK/SpotzSDK"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/CocoaLumberjack" "${PODS_ROOT}/Headers/Public/SpotzSDK" "${PODS_ROOT}/Headers/Public/SpotzSDK/SpotzSDK" "${PODS_ROOT}/Headers/Public/YapDatabase"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/CocoaLumberjack" -isystem "${PODS_ROOT}/Headers/Public/SpotzSDK" -isystem "${PODS_ROOT}/Headers/Public/SpotzSDK/SpotzSDK" -isystem "${PODS_ROOT}/Headers/Public/YapDatabase"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"AFNetworking" -l"CocoaLumberjack" -l"YapDatabase" -l"c++" -l"sqlite3" -framework "CoreGraphics" -framework "CoreLocation" -framework "Foundation" -framework "MobileCoreServices" -framework "Security" -framework "SpotzSDK" -framework "SystemConfiguration"
+PODS_ROOT = ${SRCROOT}/Pods

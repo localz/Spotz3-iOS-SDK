@@ -1,0 +1,5 @@
+platform :ios,'8.0'
+
+xcodeproj 'Spotz3-Sample-Swift'
+
+pod 'SpotzSDK', :git => 'https://github.com/localz/Spotz3-iOS-SDK.git'
