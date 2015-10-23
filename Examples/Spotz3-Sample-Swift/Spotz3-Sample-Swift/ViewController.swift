@@ -39,7 +39,7 @@ class ViewController: UIViewController {
                 // Take out the Spotz data print what we have
                 print("Inside Spotz!")
                 
-                if spot.beacons.count > 0,
+                if (spot.beacons != nil && spot.beacons.count > 0),
                     let beacon = spot.beacons[0] as? SpotzBeaconDetails
                 {
                     // Print out the closest beacon
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
                 // Take out the Spotz data print what we have
                 print("Outside Spotz!")
                 
-                if spot.beacons.count > 0,
+                if (spot.beacons != nil && spot.beacons.count > 0),
                     let beacon = spot.beacons[0] as? SpotzBeaconDetails
                 {
                     // Print out the closest beacon
@@ -136,7 +136,7 @@ class ViewController: UIViewController {
         // Update the neccessary labels
         self.lblSpotName.text = "Name: \(data.name)"
         
-        if (data.beacons.count > 0),
+        if (data.beacons != nil && data.beacons.count > 0),
             let closestBeacon = data.beacons[0] as? SpotzBeaconDetails
         {
             self.lblBeaconMajor.text = "Major: \(closestBeacon.major)"

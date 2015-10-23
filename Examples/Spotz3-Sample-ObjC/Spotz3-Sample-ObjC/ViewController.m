@@ -42,7 +42,7 @@
             SpotzData *spot = data[@"data"];
             NSLog(@"Inside Spotz!");
             
-            if(spot.beacons.count > 0)
+            if(spot.beacons && spot.beacons.count > 0)
             {
                 // Print out the closest beacon
                 SpotzBeaconDetails *beacon = spot.beacons[0];
@@ -78,7 +78,7 @@
             SpotzData *spot = data[@"data"];
             NSLog(@"Outside Spotz!");
             
-            if(spot.beacons.count > 0)
+            if(spot.beacons && spot.beacons.count > 0)
             {
                 // Print out the closest beacon
                 SpotzBeaconDetails *beacon = spot.beacons[0];
@@ -142,7 +142,7 @@
     // Update the neccessary labels
     self.lblSpotName.text = [NSString stringWithFormat:@"Name: %@", data.name];
     
-    if (data.beacons.count > 0)
+    if (data.beacons && data.beacons.count > 0)
     {
         SpotzBeaconDetails *closestBeacon = data.beacons[0];
         self.lblBeaconMajor.text = [NSString stringWithFormat:@"Major: %i", closestBeacon.major];
