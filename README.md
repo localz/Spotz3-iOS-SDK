@@ -31,12 +31,12 @@ Import the SpotzSDK header into the AppDelegate, then in the didFinishLaunchingW
 
 Swift
 ```
-SpotzSDK.initializeWithAppId("<Enter your app ID here>", clientKey: "<Enter your client key here>", delegate: self, withOptions:nil)
+SpotzSDK.initWithAppId("<Enter your app ID here>", appKey: "<Enter your client key here>", delegate: self, config:nil)
 ```
 
 Objective-C
 ```
-[SpotzSDK initializeWithAppId:@"<Enter your app ID here>" clientKey:@"<Enter your client key here>" delegate:self withOptions:nil];
+[SpotzSDK initWithAppId:@"<Enter your app ID here>" appKey:@"<Enter your client key here>" delegate:self config:nil];
 ```
 
 When initialization is successful, it will call the spotzSDKInitSuccessfull delegate method
@@ -49,7 +49,7 @@ func spotzInit(error: NSError?)
 {
     if let error = error
     {
-        NSLog("Error initializing spot %@",error)
+        NSLog("Error initializing spot \(error)")
     }
     else
     {
@@ -61,7 +61,7 @@ func spotzSiteInit(error: NSError?)
 {
     if let error = error
     {
-        NSLog("Error initalizing spotz sites %@",error)
+        NSLog("Error initalizing spotz sites \(error)")
     }
 }
 
@@ -69,11 +69,11 @@ func spotzSiteChangedToSite(newSite: SpotzSiteDetails!, error: NSError?)
 {
     if let error = error
     {
-        NSLog("Error updating to new site %@. %@",newSite.siteId, error);
+        NSLog("Error updating to new site \(newSite.siteId). \(error)");
     }
     else
     {
-        NSLog("Updated to new site %@",newSite.siteId);
+        print("Updated to new site \(newSite.siteId)");
     }
 }
 
@@ -120,42 +120,82 @@ You can place this listener where it makes sense
 
 Swift
 ```
-// Set up to receive notifications from your spots
+// Spotz entry notification
 NSNotificationCenter.defaultCenter().addObserverForName(SpotzInsideNotification, object: nil, queue: nil) { (note:NSNotification!) -> Void in
-    if let data = note.userInfo as? NSDictionary
+            
+    if let data = note.userInfo,
+        let spot = data["data"] as? SpotzData
     {
-        // Take out the Spotz object and its beacon
-        if let spot = data["data"] as? SpotzData
+        // Take out the Spotz data print what we have
+        print("Inside Spotz!")
+        
+        if spot.beacons.count > 0,
+            let beacon = spot.beacons[0] as? SpotzBeaconDetails
         {
-            // Entry region will be either a geofence or a beacon
-            if let beacons = spot.beacons
-            {
-                NSLog("Entry beacon (%@) detected with UUID: %@ major: %i minor: %i",spotz.name,beacon.uuid,beacon.major,beacon.minor);
-            }
-            else if let geo = spot.geo
-            {
-                NSLog("Entry geofence (%@) detected with latitude: %f longitude: %f radius %i",geo.name,geo.latitude,geo.longitude,Int(geo.radius));
-            }
-
-            // Do something great with this Spot
+            // Print out the closest beacon
+            print("Entry beacon (\(spot.name)) detected with UUID: \(beacon.uuid.UUIDString) major: \(beacon.major) minor: \(beacon.minor)")
         }
+        if let geo = spot.geo
+        {
+            // Print out the geofence if there is one
+            print("Entry geofence (\(spot.name)) detected with latitude: \(geo.latitude) longitude \(geo.longitude)");
+        }
+        if let attributes = spot.attributes
+        {
+            // List the attributes for this spot
+            print("Spot attributes:")
+            for (key,value) in attributes
+            {
+                print("\t\(key) : \(value)");
+            }
+        }
+        
+        // Do something great with this Spot
     }
 }
 
-NSNotificationCenter.defaultCenter().addObserverForName(SpotzRangingNotification, object: nil, queue: nil) { (note:NSNotification!) -> Void in
-    if let data: NSDictionary = note.object as? NSDictionary
+// Spotz exit notification
+NSNotificationCenter.defaultCenter().addObserverForName(SpotzOutsideNotification, object: nil, queue: nil) { (note:NSNotification!) -> Void in
+            
+    if let data = note.userInfo,
+        let spot = data["data"] as? SpotzData
     {
-        if let spot = data["data"] as? SpotzData
+        // Take out the Spotz data print what we have
+        print("Outside Spotz!")
+        
+        if spot.beacons.count > 0,
+            let beacon = spot.beacons[0] as? SpotzBeaconDetails
         {
-            NSLog("Spot id: %@ name: %@",spot.spotId,spot.name);
-            // Do something with this Spotz data
+            // Print out the closest beacon
+            print("Exit beacon (\(spot.name)) detected with UUID: \(beacon.uuid.UUIDString) major: \(beacon.major) minor: \(beacon.minor)")
         }
+        if let geo = spot.geo
+        {
+            // Print out the geofence if there is one
+            print("Exit geofence (\(spot.name)) detected with latitude: \(geo.latitude) longitude \(geo.longitude)");
+        }
+        if let attributes = spot.attributes
+        {
+            // List the attributes for this spot
+            print("Spot attributes:")
+            for (key,value) in attributes
+            {
+                print("\t\(key) : \(value)");
+            }
+        }
+        
+        // Do something great with this Spot
+    }
+}
 
-        // get closest beacon
-        let spotBeacon = spot.beacons[0];
-
-        NSLog("Distance is (%@) m",spotBeacon.distance())
-
+// Spotz ranging notification
+NSNotificationCenter.defaultCenter().addObserverForName(SpotzRangingNotification, object: nil, queue: nil) { (note:NSNotification!) -> Void in
+            
+    if let data = note.userInfo,
+        let spot = data["data"] as? SpotzData
+    {
+        print("Range Spotz: \(spot.name) at \(spot.distance())")
+        
         // Do something great with this Spot
     }
 }
@@ -163,45 +203,90 @@ NSNotificationCenter.defaultCenter().addObserverForName(SpotzRangingNotification
 
 Objective-C
 ```
-[[NSNotificationCenter defaultCenter] addObserverForName:SpotzInsideNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-    if (note.object)
+// Spotz entry notification
+[[NSNotificationCenter defaultCenter] addObserverForName:SpotzInsideNotification object:nil queue:nil usingBlock:^(NSNotification *note)
+{
+    if (note.userInfo)
     {
-        // Take out the Spotz object and its beacon
+        // Take out the Spotz data print what we have
         NSDictionary *data = note.userInfo;
         SpotzData *spot = data[@"data"];
-
+        NSLog(@"Inside Spotz!");
+        
         if(spot.beacons.count > 0)
         {
-            // get closest beacon
+            // Print out the closest beacon
             SpotzBeaconDetails *beacon = spot.beacons[0];
-            NSLog(@"Entry beacon (%@) detected with UUID: %@ major: %i minor: %i",spot.name,beacon.uuid,beacon.major,beacon.minor);
+            NSLog(@"Entry beacon (%@) detected with UUID: %@ major: %i minor: %i",spot.name,beacon.uuid.UUIDString,beacon.major,beacon.minor);
         }
-        else if (spot.geo)
+        if (spot.geo)
         {
+            // Print out the geofence if there is one
             SpotzGeoDetails *geo = spot.geo;
             NSLog(@"Entry geofence (%@) detected with latitude: %f longitude %f",spot.name,geo.latitude,geo.longitude);
         }
-
+        if (spot.attributes)
+        {
+            // List the attributes for this spot
+            NSLog(@"Spot attributes:");
+            for (NSString *key in spot.attributes.allKeys)
+            {
+                NSLog(@"\t%@ : %@", key, spot.attributes[key]);
+            }
+        }
+        
         // Do something great with this Spot
     }
 }];
 
-[[NSNotificationCenter defaultCenter] addObserverForName:SpotzRangingNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-    if (note.object)
+// Spotz exit notification
+[[NSNotificationCenter defaultCenter] addObserverForName:SpotzOutsideNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        
+    if (note.userInfo)
+    {
+        // Take out the Spotz data print what we have
+        NSDictionary *data = note.userInfo;
+        SpotzData *spot = data[@"data"];
+        NSLog(@"Outside Spotz!");
+        
+        if(spot.beacons.count > 0)
+        {
+            // Print out the closest beacon
+            SpotzBeaconDetails *beacon = spot.beacons[0];
+            NSLog(@"Exit beacon (%@) detected with UUID: %@ major: %i minor: %i",spot.name,beacon.uuid.UUIDString,beacon.major,beacon.minor);
+        }
+        if (spot.geo)
+        {
+            // Print out the geofence if there is one
+            SpotzGeoDetails *geo = spot.geo;
+            NSLog(@"Exit geofence (%@) detected with latitude: %f longitude %f",spot.name,geo.latitude,geo.longitude);
+        }
+        if (spot.attributes)
+        {
+            // List the attributes for this spot
+            NSLog(@"Spot attributes:");
+            for (NSString *key in spot.attributes.allKeys)
+            {
+                NSLog(@"\t%@ : %@", key, spot.attributes[key]);
+            }
+        }
+        
+        // Do something great with this Spot
+    }
+}];
+
+// Spotz ranging notification
+[[NSNotificationCenter defaultCenter] addObserverForName:SpotzRangingNotification object:nil queue:nil usingBlock:^(NSNotification *note)
+{
+    if (note.userInfo)
     {
         NSDictionary *data = note.userInfo;
-
         SpotzData *spot = data[@"data"];
-        NSNumber *acc = data[@"accuracy"];
 
-        NSLog(@"Spot id: %@ name: %@",spot.spotId,spot.name);
-
-        // get closest beacon
-        SpotzBeaconDetails *beacon = spotz.beacons[0];
-
-        NSLog(@"Distance is %@ m", [beacon distance]);
-
+        NSLog(@"Range Spotz: %@ at %f", spot.name, spot.distance);
+        
         // Do something great with this Spot
+        [self updateUISpotzEntry:spot];
     }
 }];
 ```
@@ -213,6 +298,7 @@ You can listen for the following notifications:
 - SpotzRangingNotification
 - SpotzInsideSiteGeoNotification
 - SpotzOutsideSiteGeoNotification
+...and more! Check SpotzConstant.h for a full list.
 
 **Other things to remember**
 
