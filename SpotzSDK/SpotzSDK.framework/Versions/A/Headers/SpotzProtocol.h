@@ -43,6 +43,11 @@
 - (void) spotzFailedWithError:(NSError *)error;
 
 /**
+ * This is called when spotz's app, beacons and geofence have been downloaded and services started. This may not indicate a successful registration however, e.g if location services is not available. Check spotzFailedWithError for any errors.
+ */
+- (void) spotzSetupCompleted;
+
+/**
  * This is called when bluetooth state changes. Prompt user to enable bluetooth for beacon detection if necessary.
  */
 - (void) spotzBluetoothStateDidChange:(BOOL)enabled;
