@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 	s.requires_arc = true
 	s.ios.deployment_target = '8.0'
 	s.frameworks = 'CoreLocation','SystemConfiguration','Foundation'
-	s.dependency 'AFNetworking'
+	s.dependency 'AFNetworking','~>2.6.3'
 	s.dependency 'CocoaLumberjack'
 	s.dependency 'YapDatabase'
 end
