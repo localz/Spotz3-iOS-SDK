@@ -186,4 +186,11 @@
  * Prompt user to enable location. It will only prompts user when location status is not yet determined.
  */
 - (void) requestLocationServicesPrompt;
+
+/**
+ * Set this to false to stop SDK from sending Spotz events. This should be enabled if you have a third party integration.
+ * Default is true
+ * @param enable set to true to enable the events, false to disable it
+ */
+- (void) enableSpotzEvents:(BOOL)enable;
 @end
