@@ -6,8 +6,8 @@
 //  Copyright © 2015 Localz Pty Ltd. All rights reserved.
 //
 
-#ifndef SpotzErrorTypes_h
-#define SpotzErrorTypes_h
+#ifndef SpotzErrorType_h
+#define SpotzErrorType_h
 
 typedef enum {
     EInvalidParameter  = 1, /* Invalid parameter */
@@ -24,7 +24,8 @@ typedef enum {
     ELocationNotEnabled, /* Location services not authorized */
     ENoProjectsAvailable, /* No projects available */
     ENoSitesAvailable, /* No sites available */
-    ENoConnection /* No connection */
+    ENoConnection, /* No connection */
+    ELocationFailed /* Failed obtaining location */
 } SpotzErrorType;
 
 #endif /* SpotzErrorTypes_h */

@@ -119,9 +119,19 @@
 - (void) recheckSpots;
 
 /**
- * Clears all spots monitoring.
+ * Report outstanding Spot events. This may post SpotzExtensionNotification when appropriate.
  */
-- (void) clearSpotsMonitoring;
+- (void) reportOutstandingSpotEvents;
+
+/**
+ * Stops all spots monitoring. This will stop Spots (geo/beacon) monitoring only.
+ */
+- (void) stopMonitoring;
+
+/**
+ * Starts spots monitoring. Call this method to startup Spots (geo/beacon) monitoring after stopMonitoring.
+ */
+- (void) startMonitoring;
 
 /**
  * Stop spotz service. Run startSpotz to restart the service.
@@ -193,4 +203,10 @@
  * @param enable set to true to enable the events, false to disable it
  */
 - (void) enableSpotzEvents:(BOOL)enable;
+
+/**
+ * Returns the spotz events enabled flag
+ * @param true if enabled, false if not
+ */
+- (BOOL) isSpotzEventsEnabled;
 @end
