@@ -300,7 +300,7 @@ You can listen for the following notifications:
 - SpotzOutsideSiteGeoNotification
 ...and more! Check SpotzConstant.h for a full list.
 
-5. Add details to the SDK for Integrations (Optional)
+**5. Add details to the SDK for Integrations (Optional)**
 
 If you'd like to integrate the Spotz system with your own servers or one of integration partners, have a look at the [Spotz Integration Documents](https://github.com/localz/Spotz-Docs) on how to do this.
 
