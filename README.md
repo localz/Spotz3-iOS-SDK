@@ -300,6 +300,21 @@ You can listen for the following notifications:
 - SpotzOutsideSiteGeoNotification
 ...and more! Check SpotzConstant.h for a full list.
 
+**5. Add details to the SDK for Integrations (Optional)**
+
+If you'd like to integrate the Spotz system with your own servers or one of integration partners, have a look at the [Spotz Integration Documents](https://github.com/localz/Spotz-Docs) on how to do this.
+
+To pass information to our SDK, please use the following lines of code.
+
+Objective-C
+```
+[[SpotzSDK shared] updateExtension:@"Pony Play" type:@"httpWebook" data:@{@"type":@"pony",@"name":@"sparkles"}]
+```
+Swift
+```
+SpotzSDK.shared().updateExtension("Pony Play", type: "httpWebhook", data: ["type":"pony","name":"thunder"])
+```
+
 **Other things to remember**
 
 When available, SpotzBeaconDetails or SpotzGeoDetails object is set in the SpotzData, for both SpotzInsideNotification and SpotzOutsideNotification events.
