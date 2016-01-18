@@ -57,6 +57,12 @@
  */
 - (void) restartSpotz;
 
+/**
+ *  Returns Spotz started status.
+ *  @return true if spotz is started, false if not.
+ */
+- (BOOL) isSpotzStarted;
+
 #pragma mark - Spotz Management
 
 /**
