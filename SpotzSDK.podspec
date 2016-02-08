@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
 	s.preserve_paths = 'SpotzSDK.framework'
 	s.vendored_frameworks = 'SpotzSDK/SpotzSDK.framework'
 	s.requires_arc = true
+	s.source = { :git => 'https://github.com/localz/Spotz3-iOS-SDK.git', :branch => '3.1.0.7_beta' }
 	s.ios.deployment_target = '8.0'
 	s.frameworks = 'CoreLocation','SystemConfiguration','Foundation'
 	s.dependency 'CocoaLumberjack'
