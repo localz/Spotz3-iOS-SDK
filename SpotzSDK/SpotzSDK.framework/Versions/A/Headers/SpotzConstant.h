@@ -79,6 +79,12 @@ extern NSString * const SpotzSiteChangedNotification;
 extern NSString * const SpotzBluetoothServicesStateChangeNotification;
 
 /**
+ *  Notification when network reachability services changes status.
+ *  The new status is available in userInfo["enabled"] with value 1 or 0
+ */
+extern NSString * const SpotzNetworkReachabilityStateChangeNotification;
+
+/**
  *  Notification when location services changes status. 
  *  The new status is available in userInfo["enabled"] with value 1 or 0
  *  The location state is available in userInfo["state"] as NSNumber(SpotzLocationServicesState).
