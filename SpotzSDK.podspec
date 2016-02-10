@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
 	s.preserve_paths = 'SpotzSDK.framework'
 	s.vendored_frameworks = 'SpotzSDK/SpotzSDK.framework'
 	s.requires_arc = true
+	s.source = { :git=>'https://github.com/localz' }
 	s.ios.deployment_target = '8.0'
 	s.frameworks = 'CoreLocation','SystemConfiguration','Foundation'
 	s.dependency 'AFNetworking','~>2.6.3'
