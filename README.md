@@ -308,7 +308,7 @@ To pass information to our SDK, please use the following lines of code.
 
 Objective-C
 ```
-[[SpotzSDK shared] updateExtension:@"Pony Play" type:@"httpWebhook" data:@{@"type":@"pony",@"name":@"sparkles"}]
+[[SpotzSDK shared] updateExtension:@"Pony Play" type:@"httpWebook" data:@{@"type":@"pony",@"name":@"sparkles"}]
 ```
 Swift
 ```
@@ -332,4 +332,4 @@ For bugs, feature requests, or other questions, [file an issue](https://github.c
 
 License
 =======
-Copyright 2015 Localz Pty Ltd
+Copyright 2016 Localz Pty Ltd

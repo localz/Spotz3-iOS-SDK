@@ -10,10 +10,11 @@
 
 @interface SpotzTaskManager : NSObject
 @property (nonatomic,strong) NSString *name;
-@property (nonatomic) BOOL stop;
 
 - (instancetype) initWithName:(NSString *)taskName;
 
 - (void) runIfInBackground;
+- (BOOL) isRunning;
 
+- (void) stopBackgroundTask;
 @end

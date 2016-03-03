@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 Localz Pty Ltd. All rights reserved.
 //
 
-#import "AFHTTPSessionManager.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @protocol SpotzHttpSessionManagerDelegate<NSObject>
 - (void) networkConnectionChanged:(BOOL) isConnected;
@@ -15,12 +16,14 @@
 - (NSDictionary *) additionalSecureHeader;
 @end
 
-@interface SpotzHttpSessionManager : AFHTTPSessionManager
+@interface SpotzHttpSessionManager : NSObject
 @property (nonatomic,assign) id<SpotzHttpSessionManagerDelegate> delegate;
 @property (nonatomic) BOOL isConnected;
 
 + (SpotzHttpSessionManager *) instanceWithBaseURL:(NSURL *)baseURL projectId:(NSString *)projectId projectKey:(NSString *)projectKey;
 - (SpotzHttpSessionManager *) initWithBaseURL:(NSURL *)url projectId:(NSString *)projectId projectKey:(NSString *)projectKey;
+
+- (void) setTimeoutInterval:(NSTimeInterval) timeInterval;
 
 - (NSURLSessionDataTask *)secureApiPOST:(NSString *)URLString deviceId:(NSString *)deviceId parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)apiPOST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
@@ -31,9 +34,9 @@
 - (NSURLSessionDataTask *)secureApiDELETE:(NSString *)URLString deviceId:(NSString *)deviceId parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)apiDELETE:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-- (NSURLSessionDataTask *)apiMultipartPOST:(NSString *)URLString fileName:(NSString *)filename fileData:(NSData *)fileData mime:(NSString *)mimeType parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *))failure;
+//- (NSURLSessionDataTask *)apiMultipartPOST:(NSString *)URLString fileName:(NSString *)filename fileData:(NSData *)fileData mime:(NSString *)mimeType parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *))failure;
 
-- (void) downloadImageFromURL:(NSURL *)url completion:(void (^)(NSError *error, UIImage *image)) completion;
+//- (void) downloadImageFromURL:(NSURL *)url completion:(void (^)(NSError *error, UIImage *image)) completion;
 
 // varios ways to check for network availability. Pick one.
 //- (BOOL) isNetworkAvailable;
