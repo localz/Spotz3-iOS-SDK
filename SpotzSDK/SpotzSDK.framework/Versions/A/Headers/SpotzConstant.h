@@ -13,8 +13,6 @@ typedef enum {
     SLDenied = 2 // Authorization denied
 } SpotzLocationServicesState;
 
-@interface SpotzConstant : NSObject
-
 /**
  *  Notification when spotz is found. SpotzData object of the triggered Spot is available in userInfo["data"].
  */
@@ -41,7 +39,7 @@ extern NSString * const SpotzInsideSiteGeoNotification;
 extern NSString * const SpotzOutsideSiteGeoNotification;
 
 /**
- *  Notification when a returned data exists during enter/exit Spot events. 
+ *  Notification when a returned data exists during enter/exit Spot events.
  *  When available and enabled, the response from the extension call is available in userInfo["response"].
  */
 extern NSString * const SpotzExtensionNotification;
@@ -73,7 +71,7 @@ extern NSString * const SpotzErrorNotification;
 extern NSString * const SpotzSiteChangedNotification;
 
 /**
- *  Notification when bluetooth services changes status. 
+ *  Notification when bluetooth services changes status.
  *  The new status is available in userInfo["enabled"] with value 1 or 0
  */
 extern NSString * const SpotzBluetoothServicesStateChangeNotification;
@@ -85,10 +83,8 @@ extern NSString * const SpotzBluetoothServicesStateChangeNotification;
 extern NSString * const SpotzNetworkReachabilityStateChangeNotification;
 
 /**
- *  Notification when location services changes status. 
+ *  Notification when location services changes status.
  *  The new status is available in userInfo["enabled"] with value 1 or 0
  *  The location state is available in userInfo["state"] as NSNumber(SpotzLocationServicesState).
  */
 extern NSString * const SpotzLocationServicesStateChangeNotification;
-
-@end
