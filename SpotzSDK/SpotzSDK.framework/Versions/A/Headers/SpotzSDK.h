@@ -20,6 +20,7 @@
 #import "SpotzBeaconDetails.h"
 #import "SpotzConstant.h"
 #import "SpotzProtocol.h"
+#import "SpotzCustomer.h"
 
 @class SpotzSDK;
 
@@ -215,4 +216,7 @@
  * @param true if enabled, false if not
  */
 - (BOOL) isSpotzEventsEnabled;
+
+#pragma mark - Customer
+- (void) authenticateCustomer:(NSString * _Nonnull) username password:(NSString * _Nonnull) password completion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
 @end

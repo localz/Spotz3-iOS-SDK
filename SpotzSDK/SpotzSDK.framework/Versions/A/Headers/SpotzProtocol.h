@@ -58,6 +58,10 @@
  * @param enabled is true if location services is enabled by user
  */
 - (void) spotzLocationServicesStateDidChange:(SpotzLocationServicesState)authorized enabled:(BOOL)enabled;
+
+
+- (void) spotzInsideSpot:(nullable SpotzData *)spotzData;
+- (void) spotzOutsideSpot:(nullable SpotzData *)spotzData;
 @end
 
 
