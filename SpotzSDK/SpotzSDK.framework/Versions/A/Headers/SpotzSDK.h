@@ -219,4 +219,7 @@
 
 #pragma mark - Customer
 - (void) authenticateCustomer:(NSString * _Nonnull) username password:(NSString * _Nonnull) password completion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
+
+- (void) retrieveMyCustomerDetailsWithCompletion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
+
 @end
