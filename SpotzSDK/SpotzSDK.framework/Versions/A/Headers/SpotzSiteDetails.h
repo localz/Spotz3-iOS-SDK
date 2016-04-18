@@ -14,10 +14,7 @@
 @property (nonatomic,copy,readwrite) NSString *address1;
 @property (nonatomic,copy,readwrite) NSString *address2;
 @property (nonatomic,copy,readwrite) NSString *tz;
-@property (nonatomic,copy,readwrite) NSArray *attributes;
+@property (nonatomic,copy,readwrite) NSDictionary *attributes;
 @property (nonatomic,copy,readwrite) CLLocation *location;
 
-- (void) setAttributes:(NSArray *)attributes;
-- (NSDictionary *) attributesDict;
-- (id) attributeWithKey:(NSString *)key;
 @end
