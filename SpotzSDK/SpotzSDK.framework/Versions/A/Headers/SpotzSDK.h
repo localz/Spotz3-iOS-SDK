@@ -222,4 +222,5 @@
 
 - (void) retrieveMyCustomerDetailsWithCompletion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
 
+- (void) deregisterCustomer:(NSString * _Nonnull) customerId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 @end
