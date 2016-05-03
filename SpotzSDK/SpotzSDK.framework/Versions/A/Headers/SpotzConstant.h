@@ -88,7 +88,3 @@ extern NSString * const SpotzNetworkReachabilityStateChangeNotification;
  *  The location state is available in userInfo["state"] as NSNumber(SpotzLocationServicesState).
  */
 extern NSString * const SpotzLocationServicesStateChangeNotification;
-
-@interface SpotzConstant : NSObject
-
-@end
