@@ -25,5 +25,6 @@
  *  @return approximate distance in meters. Returns -1 if not found.
  */
 - (float) distance;
+- (SpotzBeaconDetails *) closestBeacon;
 - (NSDictionary *) metadata;
 @end
