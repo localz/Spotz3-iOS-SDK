@@ -218,7 +218,7 @@
 - (BOOL) isSpotzEventsEnabled;
 
 #pragma mark - App hooks
-- (void)appPerformFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
+- (void)appPerformFetchWithCompletionHandler:(void (^ _Nonnull)(UIBackgroundFetchResult))completionHandler;
 
 #pragma mark - Customer
 - (void) registerCustomer:(NSString * _Nonnull) username password:(NSString * _Nonnull) password otherDetails:(NSDictionary * _Nonnull) otherDetails completion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
