@@ -18,6 +18,7 @@
 #import "SpotzSiteDetails.h"
 #import "SpotzData.h"
 #import "SpotzBeaconDetails.h"
+#import "SpotzGeoDetails.h"
 #import "SpotzConstant.h"
 #import "SpotzProtocol.h"
 
@@ -215,4 +216,8 @@
  * @param true if enabled, false if not
  */
 - (BOOL) isSpotzEventsEnabled;
+
+#pragma mark - App hooks
+- (void)appPerformFetchWithCompletionHandler:(void (^ _Nonnull)(UIBackgroundFetchResult))completionHandler;
+
 @end
