@@ -217,6 +217,11 @@
  */
 - (BOOL) isSpotzEventsEnabled;
 
+/**
+ * Check and download updates if available
+ */
+- (void) checkAndUpdateSpotz;
+
 #pragma mark - App hooks
 - (void)appPerformFetchWithCompletionHandler:(void (^ _Nonnull)(UIBackgroundFetchResult))completionHandler;
 
