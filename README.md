@@ -1,5 +1,5 @@
-Spotz SDK
-==========
+Spotz SDK 3.1.1
+===============
 
 ## Adding the Spotz SDK framework to your project
 
@@ -11,7 +11,7 @@ pod 'SpotzSDK', :git => 'https://github.com/localz/Spotz3-iOS-SDK.git'
 How to use the SDK
 ==================
 
-**Currently only devices that support Bluetooth Low Energy (iPhone 4s or above, running iOS 7 or better) are able to make use of the Spotz SDK**. It is safe to include the SDK on earlier versions of iOS or devices that don't support Bluetooth Low Energy. 
+**Currently only devices that support Bluetooth Low Energy (iPhone 4s or above, running iOS 7 or better) are able to make use of the Spotz SDK**. It is safe to include the SDK on earlier versions of iOS or devices that don't support Bluetooth Low Energy.
 
 There are only 4 actions to implement - **configure, initialize, start services and listen!**
 
@@ -122,13 +122,13 @@ Swift
 ```
 // Spotz entry notification
 NSNotificationCenter.defaultCenter().addObserverForName(SpotzInsideNotification, object: nil, queue: nil) { (note:NSNotification!) -> Void in
-            
+
     if let data = note.userInfo,
         let spot = data["data"] as? SpotzData
     {
         // Take out the Spotz data print what we have
         print("Inside Spotz!")
-        
+
         if spot.beacons.count > 0,
             let beacon = spot.beacons[0] as? SpotzBeaconDetails
         {
@@ -149,20 +149,20 @@ NSNotificationCenter.defaultCenter().addObserverForName(SpotzInsideNotification,
                 print("\t\(key) : \(value)");
             }
         }
-        
+
         // Do something great with this Spot
     }
 }
 
 // Spotz exit notification
 NSNotificationCenter.defaultCenter().addObserverForName(SpotzOutsideNotification, object: nil, queue: nil) { (note:NSNotification!) -> Void in
-            
+
     if let data = note.userInfo,
         let spot = data["data"] as? SpotzData
     {
         // Take out the Spotz data print what we have
         print("Outside Spotz!")
-        
+
         if spot.beacons.count > 0,
             let beacon = spot.beacons[0] as? SpotzBeaconDetails
         {
@@ -183,19 +183,19 @@ NSNotificationCenter.defaultCenter().addObserverForName(SpotzOutsideNotification
                 print("\t\(key) : \(value)");
             }
         }
-        
+
         // Do something great with this Spot
     }
 }
 
 // Spotz ranging notification
 NSNotificationCenter.defaultCenter().addObserverForName(SpotzRangingNotification, object: nil, queue: nil) { (note:NSNotification!) -> Void in
-            
+
     if let data = note.userInfo,
         let spot = data["data"] as? SpotzData
     {
         print("Range Spotz: \(spot.name) at \(spot.distance())")
-        
+
         // Do something great with this Spot
     }
 }
@@ -212,7 +212,7 @@ Objective-C
         NSDictionary *data = note.userInfo;
         SpotzData *spot = data[@"data"];
         NSLog(@"Inside Spotz!");
-        
+
         if(spot.beacons.count > 0)
         {
             // Print out the closest beacon
@@ -234,21 +234,21 @@ Objective-C
                 NSLog(@"\t%@ : %@", key, spot.attributes[key]);
             }
         }
-        
+
         // Do something great with this Spot
     }
 }];
 
 // Spotz exit notification
 [[NSNotificationCenter defaultCenter] addObserverForName:SpotzOutsideNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        
+
     if (note.userInfo)
     {
         // Take out the Spotz data print what we have
         NSDictionary *data = note.userInfo;
         SpotzData *spot = data[@"data"];
         NSLog(@"Outside Spotz!");
-        
+
         if(spot.beacons.count > 0)
         {
             // Print out the closest beacon
@@ -270,7 +270,7 @@ Objective-C
                 NSLog(@"\t%@ : %@", key, spot.attributes[key]);
             }
         }
-        
+
         // Do something great with this Spot
     }
 }];
@@ -284,7 +284,7 @@ Objective-C
         SpotzData *spot = data[@"data"];
 
         NSLog(@"Range Spotz: %@ at %f", spot.name, spot.distance);
-        
+
         // Do something great with this Spot
         [self updateUISpotzEntry:spot];
     }
@@ -315,7 +315,48 @@ Swift
 SpotzSDK.shared().updateExtension("Pony Play", type: "httpWebhook", data: ["type":"pony","name":"thunder"])
 ```
 
+**6. Implement background fetch to keep Spotz changes up to date (Optional)**
+
+To ensure the changes on the Spotz console are applied across the devices while app is in the background (not killed), do the following:
+
+1. Ensure that you have checked the box in the Background Modes -> Background fetch of your app's Capabilities section.
+
+2. In the didFinishLaunchingWithOptions
+
+    Objective-C
+    ```
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    ```
+
+    Swift
+    ```
+    UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+    ```
+
+3. Implement performFetchWithCompletionHandler method in your app delegate to handle the background fetch.
+
+    Objective-C
+    ```
+    - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+    {
+        [[SpotzSDK shared] appPerformFetchWithCompletionHandler:completionHandler];
+    }
+    ```
+
+    Swift
+    ```
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        SpotzSDK.shared().appPerformFetchWithCompletionHandler(completionHandler)
+    }
+    ```
+
 **Other things to remember**
+
+When Spots are triggered while device is unable to communicate with the server, the events are stored locally until the device is back online and another trigger event occurs. If extension is set for the Spot, it may trigger the events multiple times in a short period of time. It is recommended that the extension endpoint checks for the date of the event before processing it as the event received may no longer be relevant or valid.
+
+When the above event occurs, only the last response from the extension will be returned to the to the client (if extension response is enabled).
+
+Offline events that have been cached will be removed if the app is killed or no Spot has been triggered before the device comes back online.
 
 When available, SpotzBeaconDetails or SpotzGeoDetails object is set in the SpotzData, for both SpotzInsideNotification and SpotzOutsideNotification events.
 
