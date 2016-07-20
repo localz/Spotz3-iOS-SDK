@@ -29,6 +29,11 @@ extern NSString * const SpotzOutsideNotification;
 extern NSString * const SpotzRangingNotification;
 
 /**
+ *  Notification when ranging information available. This works on top of data collected from SpotzRangingNotification data.
+ */
+extern NSString * const SpotzClosestBeaconNotification;
+
+/**
  *  Notification when site geofence is enabled, and enter event is detected. SpotzSiteDetails object is available in userInfo["data"].
  */
 extern NSString * const SpotzInsideSiteGeoNotification;

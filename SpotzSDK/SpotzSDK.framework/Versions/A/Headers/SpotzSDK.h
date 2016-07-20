@@ -21,6 +21,7 @@
 #import "SpotzGeoDetails.h"
 #import "SpotzConstant.h"
 #import "SpotzProtocol.h"
+#import "SpotzCustomer.h"
 
 @class SpotzSDK;
 
@@ -116,12 +117,14 @@
 - (BOOL) isInsideSpotAtSiteId:(nonnull NSString *)siteId;
 
 /**
- * Reset Spots detected. This will re-trigger all the notifications if the device is within a particular spot.
+ * Reset Spots detected. This will re-trigger all the notifications if the device is within a particular spot. Ensure this is not called inside SpotzInsideNotification notification.
+ * This method and recheckSpot can only be called once every 2 seconds. If less then 2 seconds will abort.
  */
 - (void) resetSpots;
 
 /**
- * Recheck status of registered Spots. This will re-trigger all notifications if the device is within a particular spot.
+ * Recheck status of registered Spots. This will re-trigger all notifications if the device is within a particular spot. Ensure this is not called inside SpotzInsideNotification notification.
+ * This method and recheckSpot can only be called once every 2 seconds. If less then 2 seconds will abort.
  */
 - (void) recheckSpots;
 
@@ -224,5 +227,22 @@
 
 #pragma mark - App hooks
 - (void)appPerformFetchWithCompletionHandler:(void (^ _Nonnull)(UIBackgroundFetchResult))completionHandler;
+
+#pragma mark - Customer
+/**
+ *  Returns the current logged in customer
+ *
+ *  @return Returns the details of the current logged in customer
+ */
+- (nullable SpotzCustomer *) currentCustomer;
+
+
+- (void) registerCustomer:(NSString * _Nonnull) username password:(NSString * _Nonnull) password otherDetails:(NSDictionary * _Nullable) otherDetails completion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
+
+- (void) authenticateCustomer:(NSString * _Nonnull) username password:(NSString * _Nonnull) password completion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
+
+- (void) retrieveMyCustomerDetailsWithCompletion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
+
+- (void) logoutCustomer:(NSString * _Nonnull) customerId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
 @end

@@ -26,4 +26,5 @@
  */
 - (float) distance;
 - (NSDictionary *) metadata;
+- (SpotzBeaconDetails *) closestBeacon;
 @end
