@@ -46,6 +46,14 @@ extern NSString * const SpotzOutsideSiteGeoNotification;
 /**
  *  Notification when a returned data exists during enter/exit Spot events.
  *  When available and enabled, the response from the extension call is available in userInfo["response"].
+ *  response is nil if there was any error and empty NSDictionary object if there was no response/event is not enabled
+ *  You will need to link the extension to the spot in order to receive a response. See Spotz's console.
+ *
+ *  The format of the response is @{@"extResp":@"<spotId>":@"<response>"}
+ *
+ *  NOTE:
+ *  If multiple events occur for the same spot when offline, when device is back online, 
+ *  Spotz only returns the last response from the third party even when there were multiple events during offline.
  */
 extern NSString * const SpotzExtensionNotification;
 

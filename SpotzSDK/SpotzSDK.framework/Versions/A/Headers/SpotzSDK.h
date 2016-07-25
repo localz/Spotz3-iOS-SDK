@@ -98,23 +98,29 @@
 /**
  * Returns true if device is inside the spot
  * @param name Spot's name
- * @preturn true if inside, false if outside or not yet detected
+ * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotWithName:(nonnull NSString *)name;
 
 /**
  * Returns true if device is inside the spot
  * @param name Spot's id
- * @preturn true if inside, false if outside or not yet detected
+ * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotWithId:(nonnull NSString *)spotId;
 
 /**
  * Returns true if device is inside a spot with the given site ID
  * @param name Site ID
- * @preturn true if inside, false if outside or not yet detected
+ * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotAtSiteId:(nonnull NSString *)siteId;
+
+/**
+ * Returns list of SpotzData that are within proximity
+ * @return list of SpotzData
+ */
+- (NSArray * _Nullable)insideSpots;
 
 /**
  * Reset Spots detected. This will re-trigger all the notifications if the device is within a particular spot. Ensure this is not called inside SpotzInsideNotification notification.
