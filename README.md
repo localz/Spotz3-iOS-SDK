@@ -1,4 +1,4 @@
-Spotz SDK 3.1.3
+Spotz SDK 3.1.4
 ===============
 
 ## Adding the Spotz SDK framework to your project
