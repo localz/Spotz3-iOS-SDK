@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface SpotzCustomer : NSObject<NSCoding>
-@property (nonatomic,strong) NSString *internalId;
-@property (nonatomic,strong) NSString *customerId;
+@property (nonatomic,strong) NSString * _Nonnull internalId;
+@property (nonatomic,strong) NSString * _Nonnull customerId;
 
-@property (nonatomic,strong) NSDictionary *attributes;
+@property (nonatomic,strong) NSDictionary * _Nullable attributes;
 
 @end

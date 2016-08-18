@@ -129,15 +129,22 @@
 - (void) resetSpots;
 
 /**
- * Recheck status of registered Spots. This will re-trigger all notifications if the device is within a particular spot. Ensure this is not called inside SpotzInsideNotification notification.
+ * Recheck status of registered Spots. This will re-trigger all notifications if the device is within a particular spot. 
+ * Ensure this is not called inside SpotzInsideNotification notification.
+ *
+ * Please note: This will also reset and call any spots state, thus you may get multiple entry events without any exists, 
+ * and potentially call the server extensions if they are set.
+ *
+ * To check if you are inside a spot, please call retriggerInsideSpots instead or check the spots in the insideSpots array.
  * This method and recheckSpot can only be called once every 2 seconds. If less then 2 seconds will abort.
  */
 - (void) recheckSpots;
 
 /**
- * Report outstanding Spot events. This may post SpotzExtensionNotification when appropriate.
+ * Retrigger SpotzInsideNotification notifications based on spots that are inside. This is a passive
+ * trigger and will only trigger spots that are currently in proximity of the device.
  */
-- (void) reportOutstandingSpotEvents;
+- (void) retriggerInsideSpots;
 
 /**
  * Stops all spots monitoring. This will stop Spots (geo/beacon) monitoring only.

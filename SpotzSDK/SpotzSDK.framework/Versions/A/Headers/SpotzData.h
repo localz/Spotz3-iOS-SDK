@@ -11,12 +11,12 @@
 #import "SpotzGeoDetails.h"
 
 @interface SpotzData : NSObject<NSCoding>
-@property (nonatomic,strong) NSString *name;
-@property (nonatomic,strong) NSDictionary *attributes;
-@property (nonatomic,strong) NSString *spotId;
-@property (nonatomic,strong) NSString *siteId;
-@property (nonatomic,strong) NSArray *beacons;
-@property (nonatomic,strong) SpotzGeoDetails *geo;
+@property (nonatomic,strong) NSString * _Nonnull name;
+@property (nonatomic,strong) NSDictionary * _Nullable attributes;
+@property (nonatomic,strong) NSString * _Nullable spotId;
+@property (nonatomic,strong) NSString * _Nonnull siteId;
+@property (nonatomic,strong) NSArray * _Nullable beacons;
+@property (nonatomic,strong) SpotzGeoDetails * _Nullable geo;
 @property (nonatomic) BOOL isRanging;
 
 /**
@@ -25,6 +25,6 @@
  *  @return approximate distance in meters. Returns -1 if not found.
  */
 - (float) distance;
-- (NSDictionary *) metadata;
-- (SpotzBeaconDetails *) closestBeacon;
+- (NSDictionary * _Nonnull) metadata;
+- (SpotzBeaconDetails * _Nullable) closestBeacon;
 @end
