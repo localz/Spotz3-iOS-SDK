@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface SpotzSiteDetails : NSObject<NSCopying,NSCoding>
-@property (nonatomic,copy,readwrite) NSString *siteId;
-@property (nonatomic,copy,readwrite) NSString *name;
-@property (nonatomic,copy,readwrite) NSString *address1;
-@property (nonatomic,copy,readwrite) NSString *address2;
-@property (nonatomic,copy,readwrite) NSString *tz;
-@property (nonatomic,copy,readwrite) NSArray *attributes;
-@property (nonatomic,copy,readwrite) CLLocation *location;
+@property (nonatomic,copy,readwrite) NSString * _Nonnull siteId;
+@property (nonatomic,copy,readwrite) NSString * _Nonnull name;
+@property (nonatomic,copy,readwrite) NSString * _Nullable address1;
+@property (nonatomic,copy,readwrite) NSString * _Nullable address2;
+@property (nonatomic,copy,readwrite) NSString * _Nullable tz;
+@property (nonatomic,copy,readwrite) NSArray * _Nullable attributes;
+@property (nonatomic,copy,readwrite) CLLocation * _Nullable location;
 
-- (void) setAttributes:(NSArray *)attributes;
-- (NSDictionary *) attributesDict;
-- (id) attributeWithKey:(NSString *)key;
+- (void) setAttributes:(NSArray * _Nonnull)attributes;
+- (NSDictionary * _Nullable) attributesDict;
+- (id _Nullable) attributeWithKey:(NSString * _Nonnull)key;
 @end
