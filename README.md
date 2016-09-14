@@ -315,7 +315,86 @@ Swift
 SpotzSDK.shared().updateExtension("Pony Play", type: "httpWebhook", data: ["type":"pony","name":"thunder"])
 ```
 
-**6. Implement background fetch to keep Spotz changes up to date (Optional)**
+**6. Implement Closest Beacon Notification (experimental)**
+
+There may be a need to only show the closest beacon to the device at a particular time. This could be because you’re in a busy environment with lots of beacons, and the information you’re trying to present is only applicable to the beacon that’s nearby. From SDK v3.1.4.2 we have made this easier and included this logic within our SDK.
+
+#### Configuration
+To enable notifications for the closest Spot only, pass the 'enableSmoothing' flag with a value of 'true' to the SDK:
+
+Swift
+```
+SpotzSDK.initWithAppId("<Enter your app ID here>", appKey: "<Enter your client key here>", delegate: self, config:["enableSmoothing":"true"])
+```
+
+Objective-C
+```
+[SpotzSDK initWithAppId:@"<Enter your app ID here>" appKey:@"<Enter your client key here>" delegate:self config:@{@"enableSmoothing":@"true"}];
+```
+
+#### Listen for SpotzClosestBeaconNotification notification
+Once enabled, it will start sending SpotzClosestBeaconNotification of the closest ranging type beacons that are detected:
+
+Swift
+```
+// Spotz Closest Beacon Spot
+NSNotificationCenter.defaultCenter().addObserverForName(SpotzClosestBeaconNotification, object: nil, queue: nil) { (note:NSNotification!) -> Void in
+
+    if let data = note.userInfo,
+        let spot = data["data"] as? SpotzData
+    {
+        print("Range Spotz: \(spot.name) at \(spot.distance())")
+
+        // Do something great with this Spot
+    }
+}
+```
+
+Objective-C
+```
+// Spotz Closest Beacon Spot
+[[NSNotificationCenter defaultCenter] addObserverForName:SpotzClosestBeaconNotification object:nil queue:nil usingBlock:^(NSNotification *note)
+{
+    if (note.userInfo)
+    {
+        NSDictionary *data = note.userInfo;
+        SpotzData *spot = data[@"data"];
+
+        NSLog(@"Closest spot: %@ at %f", spot.name, spot.distance);
+
+        // Do something great with this Spot
+        // ...
+    }
+}];
+```
+
+#### Set the Spot to ‘Range’
+Ensure the beacon spot is set to range. Go to Spotz console -> [Project name] -> Application Setup -> Spots -> [Spot name] -> Spot Triggers -> Configuration, and set the Spot beacon ranging to 'Far' distance
+
+#### Set the Cut-off Distances
+The cutoff distance will help in filtering out the beacons that we are not interested in detecting at a particular location. We have developed a tool that will assist you in setting this up.
+
+##### Using Beacon Scanner App
+Send us an email to get access to the beta version of the 'Beacon Scanner' app and login to your account.
+
+##### Manually
+Each spot will need to be configured with a cutoff distance. Since each hardware device may read the beacon differently, using the below configuration, we can set out the 'effective range' for each spot
+
+Add the following to the Spot's attribute:
+
+```
+name: cufoff_distance/Apple
+value: <the value detected by the beacon scanner>
+```
+with the cutoff value for Apple iOS devices
+
+```
+name: cufoff_distance
+value: <the value detected by the beacon scanner>
+```
+This cutoff value will be applied to all Android devices
+
+**7. Implement background fetch to keep Spotz changes up to date (Optional)**
 
 To ensure the changes on the Spotz console are applied across the devices while app is in the background (not killed), do the following:
 
