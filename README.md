@@ -347,6 +347,10 @@ NSNotificationCenter.defaultCenter().addObserverForName(SpotzClosestBeaconNotifi
 
         // Do something great with this Spot
     }
+    else
+    {
+        // no closest beacons found i.e all beacons are out of range
+    }
 }
 ```
 
@@ -364,6 +368,10 @@ Objective-C
 
         // Do something great with this Spot
         // ...
+    }
+    else
+    {
+        // no closest beacons found i.e all beacons are out of range
     }
 }];
 ```
