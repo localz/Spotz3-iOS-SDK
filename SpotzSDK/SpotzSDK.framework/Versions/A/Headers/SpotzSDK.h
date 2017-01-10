@@ -104,14 +104,14 @@
 
 /**
  * Returns true if device is inside the spot
- * @param name Spot's id
+ * @param spotId Spot's id
  * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotWithId:(nonnull NSString *)spotId;
 
 /**
  * Returns true if device is inside a spot with the given site ID
- * @param name Site ID
+ * @param siteId Site ID
  * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotAtSiteId:(nonnull NSString *)siteId;
@@ -183,7 +183,6 @@
  *  Associates the current device with a custom identity. Note that if the app is reinstalled, deviceId will need to be re-associated with the identity.
  *
  *  @param identityId identity to be assigned to this device e.g. customerId/token/email
- *  @param attributes additional information to be associated with this device. Useful when passing additional info to third party extensions.
  *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the error object describing the error that occurred.
  */
 - (void) identity:(nonnull NSString *)identityId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
@@ -229,7 +228,7 @@
 
 /**
  * Returns the spotz events enabled flag
- * @param true if enabled, false if not
+ * @return true if enabled, false if not
  */
 - (BOOL) isSpotzEventsEnabled;
 
@@ -237,6 +236,46 @@
  * Check and download updates if available
  */
 - (void) checkAndUpdateSpotz;
+
+/**
+ * Enable background location update.
+ * You will need to enable Capability->Background Mode->Location Updates to use this feature, and provide GPS warning when submitting to AppStore
+ * Enabling this will also allow the app to detect geo-border crossing more accurately.
+ *
+ * WARNING: Please beware that when this is enabled, battery usage may be higher than normal.
+ */
+- (void) enableBackgroundLocation;
+
+/**
+ * Stops background location update.
+ */
+- (void) disableBackgroundLocation;
+
+/**
+ * Start background location tracking. SpotzSDK.enableBackgroundLocation must already be called.
+ */
+- (void) startBackgroundLocation;
+
+/**
+ * Stop background location tracking
+ */
+- (void) stopBackgroundLocation;
+
+/**
+ * Checks if background location is started
+ */
+- (BOOL) isBackgroundLocationStarted;
+
+/**
+ * Checks if background location is enabled
+ */
+- (BOOL) isBackgroundLocationEnabled;
+
+/**
+ * If background location is enabled, you can adjust the minimum interval of how often location data is recorded, if changed.
+ * @param interval in seconds. If 0 then recording is disabled. Defaults to 0 seconds.
+ */
+- (void) backgroundLocationRecordInterval:(int)interval;
 
 #pragma mark - App hooks
 - (void)appPerformFetchWithCompletionHandler:(void (^ _Nonnull)(UIBackgroundFetchResult))completionHandler;
@@ -258,4 +297,33 @@
 
 - (void) logoutCustomer:(NSString * _Nonnull) customerId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
+#pragma mark - Real Time Tracking
+
+/**
+ * Start tracking the given track ID
+ * @param track Id to track
+ */
+- (void) startTrackingWithTrackId:(NSString * _Nonnull)trackId;
+
+/**
+ * Start tracking the given track ID
+ * @param track Id to track
+ * @param location to geofence
+ * @param radius of geofence (optional)
+ */
+- (void) startTrackingWithTrackId:(NSString * _Nonnull)trackId location:(NSArray * _Nonnull)latlng radius:(NSNumber * _Nullable)radius;
+
+/**
+ * Stop tracking the given track ID
+ */
+- (void) stopTrackingWithTrackId:(NSString * _Nonnull)trackId;
+
+/**
+ * Stop all tracking all trackIDs
+ */
+- (void) stopTrackingAllTrackIds;
+
+#ifdef DEBUG
+- (NSArray * _Nonnull) monitoredGeofences;
+#endif
 @end

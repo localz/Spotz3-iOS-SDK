@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Localz Pty Ltd. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
+@import UIKit;
+@import Foundation;
+
+#import "SpotzMacros.h"
 
 @protocol SpotzHttpSessionManagerDelegate<NSObject>
 - (void) networkConnectionChanged:(BOOL) isConnected;
