@@ -48,7 +48,6 @@ extern NSString * const SpotzOutsideSiteGeoNotification;
  */
 extern NSString * const SpotzRTInsideNotification;
 
-
 /**
  *  Notification when realtime spotz is no longer detected.
  */
@@ -58,7 +57,6 @@ extern NSString * const SpotzRTOutsideNotification;
  *  Notification when realtime spotz remains found after a certain x period.
  */
 extern NSString * const SpotzRTDwellNotification;
-
 
 /**
  *  Notification when a returned data exists during enter/exit Spot events.
