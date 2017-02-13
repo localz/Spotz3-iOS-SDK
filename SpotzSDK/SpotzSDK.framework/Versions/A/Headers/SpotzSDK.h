@@ -297,6 +297,12 @@
 
 - (void) logoutCustomer:(NSString * _Nonnull) customerId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
+/**
+ * Registers custom userId to be used as the tracking identifier
+ * UserId must be registered in Spotz
+ */
+- (void) registerCustomUserId:(NSString * _Nonnull)customUserId;
+
 #pragma mark - Real Time Tracking
 
 /**

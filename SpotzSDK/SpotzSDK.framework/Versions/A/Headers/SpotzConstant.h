@@ -116,3 +116,9 @@ extern NSString * const SpotzNetworkReachabilityStateChangeNotification;
  *  The location state is available in userInfo["state"] as NSNumber(SpotzLocationServicesState).
  */
 extern NSString * const SpotzLocationServicesStateChangeNotification;
+
+/**
+ *  Notification of background location connection state
+ *  The new status is available in userInfo["state"]
+ */
+extern NSString * const SpotzBGLocationConnectionStateChangeNotification;
