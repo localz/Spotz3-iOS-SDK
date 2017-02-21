@@ -123,6 +123,12 @@
 - (NSArray * _Nullable)insideSpots;
 
 /**
+ * Get current device's location.
+ * @return current device's location. Nil if not available.
+ */
+- (CLLocation *) currentLocation;
+
+/**
  * Reset Spots detected. This will re-trigger all the notifications if the device is within a particular spot. Ensure this is not called inside SpotzInsideNotification notification.
  * This method and recheckSpot can only be called once every 2 seconds. If less then 2 seconds will abort.
  */
@@ -318,6 +324,12 @@
  * @param radius of geofence (optional)
  */
 - (void) startTrackingWithTrackId:(NSString * _Nonnull)trackId location:(NSArray * _Nonnull)latlng radius:(NSNumber * _Nullable)radius;
+
+/**
+ * Track ETA based on trackId and location
+ * @param trackId to get ETA for
+ */
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId completion:(void(^ _Nonnull)(NSError * _Nullable error, NSNumber * _Nullable eta))completion;
 
 /**
  * Stop tracking the given track ID
