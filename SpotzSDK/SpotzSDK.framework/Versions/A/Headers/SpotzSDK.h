@@ -326,10 +326,23 @@
 - (void) startTrackingWithTrackId:(NSString * _Nonnull)trackId location:(NSArray * _Nonnull)latlng radius:(NSNumber * _Nullable)radius;
 
 /**
- * Track ETA based on trackId and location
+ * Track ETA based on trackId and location. Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
  * @param trackId to get ETA for
  */
-- (void) getEtaTrackId:(NSString * _Nonnull)trackId completion:(void(^ _Nonnull)(NSError * _Nullable error, NSNumber * _Nullable eta))completion;
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId;
+
+/**
+ * Track ETA based on trackId and location. Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
+ * @param trackId to get ETA for
+ */
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId;
+
+/**
+ * Retrieves ETA based on track ID and the given location array of (lat,lng). Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
+ * @param trackId
+ * @param location array to track from (lat,lng)
+ */
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId location:(NSArray * _Nonnull)latlng;
 
 /**
  * Stop tracking the given track ID
