@@ -44,6 +44,11 @@ extern NSString * const SpotzInsideSiteGeoNotification;
 extern NSString * const SpotzOutsideSiteGeoNotification;
 
 /**
+ *  Notification when real time init is successfully and first location has been transmitted
+ */
+extern NSString * const SpotzRTInitSuccessNotification;
+
+/**
  *  Notification when realtime spotz is found.
  */
 extern NSString * const SpotzRTInsideNotification;
