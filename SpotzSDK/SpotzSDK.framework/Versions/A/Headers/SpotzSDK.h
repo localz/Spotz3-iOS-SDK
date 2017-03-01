@@ -278,6 +278,11 @@
 - (BOOL) isBackgroundLocationEnabled;
 
 /**
+ * Returns true if background location is ready
+ */
+- (BOOL) isBackgroundLocationReady;
+
+/**
  * If background location is enabled, you can adjust the minimum interval of how often location data is recorded, if changed.
  * @param interval in seconds. If 0 then recording is disabled. Defaults to 0 seconds.
  */
