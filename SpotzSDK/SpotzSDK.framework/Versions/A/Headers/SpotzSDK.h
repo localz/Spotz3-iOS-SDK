@@ -312,20 +312,6 @@
 #pragma mark - Real Time Tracking
 
 /**
- * Start tracking the given track ID
- * @param track Id to track
- */
-- (void) startTrackingWithTrackId:(NSString * _Nonnull)trackId;
-
-/**
- * Start tracking the given track ID
- * @param track Id to track
- * @param location to geofence
- * @param radius of geofence (optional)
- */
-- (void) startTrackingWithTrackId:(NSString * _Nonnull)trackId location:(NSArray * _Nonnull)latlng radius:(NSNumber * _Nullable)radius;
-
-/**
  * Track ETA based on trackId and location. Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
  * @param trackId to get ETA for
  */
@@ -335,19 +321,14 @@
  * Track ETA based on trackId and location. Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
  * @param trackId to get ETA for
  */
-- (void) getEtaTrackId:(NSString * _Nonnull)trackId;
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng;
 
 /**
  * Retrieves ETA based on track ID and the given location array of (lat,lng). Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
  * @param trackId
  * @param location array to track from (lat,lng)
  */
-- (void) getEtaTrackId:(NSString * _Nonnull)trackId location:(NSArray * _Nonnull)latlng;
-
-/**
- * Stop tracking the given track ID
- */
-- (void) stopTrackingWithTrackId:(NSString * _Nonnull)trackId;
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng location:(NSArray * _Nonnull)latlng;
 
 /**
  * Stop all tracking all trackIDs
