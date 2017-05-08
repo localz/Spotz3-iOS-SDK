@@ -314,6 +314,12 @@
  */
 - (void) registerCustomUserId:(NSString * _Nonnull)customUserId;
 
+#pragma mark - Device Login
+
+- (void) loginDeviceWithJWTToken:(NSString * _Nonnull)token;
+
+- (void) logoutDevice;
+
 #pragma mark - Real Time Tracking
 
 /**
