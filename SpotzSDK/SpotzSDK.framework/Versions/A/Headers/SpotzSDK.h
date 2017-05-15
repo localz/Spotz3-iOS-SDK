@@ -263,6 +263,21 @@
 - (void) startBackgroundLocation;
 
 /**
+ * Starts background location however pauses location update when app is not in the foreground.
+ */
+- (void) startBackgroundLocationForegroundOnly;
+
+/**
+ * Call this method for a minimum background location call.
+ */
+- (void) pauseBackgroundLocation;
+
+/**
+ * Resumes backgroundLocation to normal resolution and frequency updates.
+ */
+- (void) resumeBackgroundLocation;
+
+/**
  * Stop background location tracking
  */
 - (void) stopBackgroundLocation;
