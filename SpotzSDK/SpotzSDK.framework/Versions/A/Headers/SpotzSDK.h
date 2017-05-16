@@ -281,7 +281,7 @@
  * Check if background location is on pause. Call resume to start normal background location update.
  * return true if paused, false if not.
  */
-- (BOOL) isBackgroundLocationOnPause;
+- (BOOL) isBackgroundLocationPaused;
 
 /**
  * Stop background location tracking
