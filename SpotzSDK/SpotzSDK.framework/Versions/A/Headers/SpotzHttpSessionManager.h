@@ -28,6 +28,8 @@
 
 - (void) setTimeoutInterval:(NSTimeInterval) timeInterval;
 
+- (void) secureUsingJwt;
+
 - (NSURLSessionDataTask *)secureApiPOST:(NSString *)URLString deviceId:(NSString *)deviceId parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)apiPOST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)secureApiPUT:(NSString *)URLString deviceId:(NSString *)deviceId parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
