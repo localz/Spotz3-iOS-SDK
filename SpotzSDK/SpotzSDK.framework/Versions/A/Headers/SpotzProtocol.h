@@ -6,6 +6,7 @@
 //  Copyright © 2015 Localz Pty Ltd. All rights reserved.
 //
 #import "SpotzConstant.h"
+#import "SpotzLocationData.h"
 
 #ifndef SpotzProtocol_h
 #define SpotzProtocol_h
@@ -67,6 +68,17 @@
  * @param enabled is true if location services is enabled by user
  */
 - (void) spotzLocationServicesStateDidChange:(SpotzLocationServicesState)authorized enabled:(BOOL)enabled;
+
+/**
+ * Real time location data will be posted here when enabled
+ * @param location SpotzLocationData object with the current location data information
+ */
+- (void) spotzLatestLocationUpdate:(SpotzLocationData * _Nonnull)location;
+
+#ifdef DEBUG
+- (void) debugMessage:(NSString * _Nonnull)message;
+#endif
+
 @end
 
 
