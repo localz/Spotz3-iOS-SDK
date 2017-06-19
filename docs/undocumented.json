@@ -1,0 +1,131 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzBeaconDetails.h",
+      "line": 11,
+      "symbol": "SpotzBeaconDetails",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzConstant.h",
+      "line": 10,
+      "symbol": "",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzConstant.h",
+      "line": 14,
+      "symbol": "SpotzLocationServicesState",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzCustomer.h",
+      "line": 11,
+      "symbol": "SpotzCustomer",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzData.h",
+      "line": 13,
+      "symbol": "SpotzData",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzErrorType.h",
+      "line": 12,
+      "symbol": "",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzErrorType.h",
+      "line": 29,
+      "symbol": "SpotzErrorType",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzGeoDetails.h",
+      "line": 12,
+      "symbol": "SpotzGeoDetails",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzLocationData.h",
+      "line": 12,
+      "symbol": "SpotzLocationData",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzProtocol.h",
+      "line": 14,
+      "symbol": "SpotzSDKDelegate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzSDK.h",
+      "line": 313,
+      "symbol": "SpotzSDK.-appPerformFetchWithCompletionHandler:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzSDK.h",
+      "line": 324,
+      "symbol": "SpotzSDK.-registerCustomer:password:otherDetails:completion:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzSDK.h",
+      "line": 326,
+      "symbol": "SpotzSDK.-authenticateCustomer:password:completion:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzSDK.h",
+      "line": 328,
+      "symbol": "SpotzSDK.-retrieveMyCustomerDetailsWithCompletion:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzSDK.h",
+      "line": 330,
+      "symbol": "SpotzSDK.-logoutCustomer:completion:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzSDK.h",
+      "line": 340,
+      "symbol": "SpotzSDK.-loginDeviceWithJWTToken:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzSDK.h",
+      "line": 342,
+      "symbol": "SpotzSDK.-logoutDevice",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/martemas/Development/localz/spotz-sdk-ios/SpotzSDK/SpotzSiteDetails.h",
+      "line": 11,
+      "symbol": "SpotzSiteDetails",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/martemas/Development/localz/spotz-sdk-ios"
+}
