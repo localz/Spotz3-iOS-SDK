@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
 			Copyright 2017 Localz Pty Ltd.
 			LICENSE
 	}
-	s.version = '3.2'
+	s.version = '3.2.1'
 	s.summary = 'iOS library for Localz Platform'
 	s.homepage = 'http://localz.com'
 	s.author = { 'Localz Pty Ltd' => 'info@localz.com' }
