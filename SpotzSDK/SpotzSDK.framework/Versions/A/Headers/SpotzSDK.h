@@ -347,20 +347,14 @@
  * Track ETA based on trackId and location. Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
  * @param trackId to get ETA for
  */
-- (void) getEtaTrackId:(NSString * _Nonnull)trackId;
-
-/**
- * Track ETA based on trackId and location. Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
- * @param trackId to get ETA for
- */
-- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng;
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng completion:(void(^ _Nullable)(NSError * _Nullable error,NSDictionary * _Nullable data)) completion;
 
 /**
  * Retrieves ETA based on track ID and the given location array of (lat,lng). Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
  * @param trackId
  * @param location array to track from (lat,lng)
  */
-- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng location:(NSArray * _Nonnull)latlng;
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng location:(NSArray * _Nonnull)latlng completion:(void(^_Nullable)(NSError * _Nullable error,NSDictionary * _Nullable data)) completion;
 
 /**
  * Stop all tracking all trackIDs
