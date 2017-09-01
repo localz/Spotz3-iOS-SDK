@@ -344,13 +344,13 @@
 #pragma mark - Real Time Tracking
 
 /**
- * Track ETA based on trackId and location. Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
+ * Track ETA based on trackId and location. Result will be returned completion callback of shape (error, data), where data should look like: {trackId, etaSeconds, etaMinutes, etaFrom, etaTo}
  * @param trackId to get ETA for
  */
 - (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng completion:(void(^ _Nullable)(NSError * _Nullable error,NSDictionary * _Nullable data)) completion;
 
 /**
- * Retrieves ETA based on track ID and the given location array of (lat,lng). Result will be returned in notification SpotzRTEtaNotification with userInfo['data'] = (trackId,eta in seconds)
+ * Retrieves ETA based on track ID and the given location array of (lat,lng). Result will be returned completion callback of shape (error, data), where data should look like: {trackId, etaSeconds, etaMinutes, etaFrom, etaTo}
  * @param trackId
  * @param location array to track from (lat,lng)
  */
