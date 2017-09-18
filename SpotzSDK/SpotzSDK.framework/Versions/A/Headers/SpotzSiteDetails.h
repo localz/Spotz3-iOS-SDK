@@ -14,10 +14,9 @@
 @property (nonatomic,copy,readwrite) NSString * _Nullable address1;
 @property (nonatomic,copy,readwrite) NSString * _Nullable address2;
 @property (nonatomic,copy,readwrite) NSString * _Nullable tz;
-@property (nonatomic,copy,readwrite) NSArray * _Nullable attributes;
+@property (nonatomic,copy,readwrite) NSDictionary * _Nullable attributes;
 @property (nonatomic,copy,readwrite) CLLocation * _Nullable location;
 
-- (void) setAttributes:(NSArray * _Nonnull)attributes;
-- (NSDictionary * _Nullable) attributesDict;
+- (void) setAttributes:(NSDictionary * _Nonnull)attributes;
 - (id _Nullable) attributeWithKey:(NSString * _Nonnull)key;
 @end
