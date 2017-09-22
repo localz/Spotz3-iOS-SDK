@@ -104,14 +104,14 @@
 
 /**
  * Returns true if device is inside the spot
- * @param name Spot's id
+ * @param spotId Spot's id
  * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotWithId:(nonnull NSString *)spotId;
 
 /**
  * Returns true if device is inside a spot with the given site ID
- * @param name Site ID
+ * @param siteId Site ID
  * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotAtSiteId:(nonnull NSString *)siteId;
@@ -121,6 +121,12 @@
  * @return list of SpotzData
  */
 - (NSArray * _Nullable)insideSpots;
+
+/**
+ * Get current device's location.
+ * @return current device's location. Nil if not available.
+ */
+- (CLLocation *) currentLocation;
 
 /**
  * Reset Spots detected. This will re-trigger all the notifications if the device is within a particular spot. Ensure this is not called inside SpotzInsideNotification notification.
@@ -183,7 +189,6 @@
  *  Associates the current device with a custom identity. Note that if the app is reinstalled, deviceId will need to be re-associated with the identity.
  *
  *  @param identityId identity to be assigned to this device e.g. customerId/token/email
- *  @param attributes additional information to be associated with this device. Useful when passing additional info to third party extensions.
  *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the error object describing the error that occurred.
  */
 - (void) identity:(nonnull NSString *)identityId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
@@ -229,7 +234,7 @@
 
 /**
  * Returns the spotz events enabled flag
- * @param true if enabled, false if not
+ * @return true if enabled, false if not
  */
 - (BOOL) isSpotzEventsEnabled;
 
@@ -237,6 +242,72 @@
  * Check and download updates if available
  */
 - (void) checkAndUpdateSpotz;
+
+/**
+ * Enable background location update.
+ * You will need to enable Capability->Background Mode->Location Updates to use this feature, and provide GPS warning when submitting to AppStore
+ * Enabling this will also allow the app to detect geo-border crossing more accurately.
+ *
+ * WARNING: Please beware that when this is enabled, battery usage may be higher than normal.
+ */
+- (void) enableBackgroundLocation;
+
+/**
+ * Stops background location update.
+ */
+- (void) disableBackgroundLocation;
+
+/**
+ * Start background location tracking. SpotzSDK.enableBackgroundLocation must already be called.
+ */
+- (void) startBackgroundLocation;
+
+/**
+ * Starts background location however pauses location update when app is not in the foreground.
+ */
+- (void) startBackgroundLocationForegroundOnly;
+
+/**
+ * Call this method for a minimum background location call.
+ */
+- (void) pauseBackgroundLocation;
+
+/**
+ * Resumes backgroundLocation to normal resolution and frequency updates.
+ */
+- (void) resumeBackgroundLocation;
+
+/**
+ * Check if background location is on pause. Call resume to start normal background location update.
+ * return true if paused, false if not.
+ */
+- (BOOL) isBackgroundLocationPaused;
+
+/**
+ * Stop background location tracking
+ */
+- (void) stopBackgroundLocation;
+
+/**
+ * Checks if background location is started
+ */
+- (BOOL) isBackgroundLocationStarted;
+
+/**
+ * Checks if background location is enabled
+ */
+- (BOOL) isBackgroundLocationEnabled;
+
+/**
+ * Returns true if background location is ready
+ */
+- (BOOL) isBackgroundLocationReady;
+
+/**
+ * If background location is enabled, you can adjust the minimum interval of how often location data is recorded, if changed.
+ * @param interval in seconds. If 0 then recording is disabled. Defaults to 0 seconds.
+ */
+- (void) backgroundLocationRecordInterval:(int)interval;
 
 #pragma mark - App hooks
 - (void)appPerformFetchWithCompletionHandler:(void (^ _Nonnull)(UIBackgroundFetchResult))completionHandler;
@@ -258,4 +329,34 @@
 
 - (void) logoutCustomer:(NSString * _Nonnull) customerId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
+/**
+ * Registers custom userId to be used as the tracking identifier
+ * UserId must be registered in Spotz
+ */
+- (void) registerCustomUserId:(NSString * _Nonnull)customUserId;
+
+#pragma mark - Device Login
+
+- (void) loginDeviceWithJWTToken:(NSString * _Nonnull)token;
+
+- (void) logoutDevice;
+
+#pragma mark - Real Time Tracking
+
+/**
+ * Track ETA based on trackId and location. Result will be returned completion callback of shape (error, data), where data should look like: {trackId, etaSeconds, etaMinutes, etaFrom, etaTo}
+ * @param trackId to get ETA for
+ */
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng completion:(void(^ _Nullable)(NSError * _Nullable error,NSDictionary * _Nullable data)) completion;
+
+/**
+ * Retrieves ETA based on track ID and the given location array of (lat,lng). Result will be returned completion callback of shape (error, data), where data should look like: {trackId, etaSeconds, etaMinutes, etaFrom, etaTo}
+ * @param trackId
+ * @param location array to track from (lat,lng)
+ */
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng location:(NSArray * _Nonnull)latlng completion:(void(^_Nullable)(NSError * _Nullable error,NSDictionary * _Nullable data)) completion;
+
+#ifdef DEBUG
+- (NSArray * _Nonnull) monitoredGeofences;
+#endif
 @end

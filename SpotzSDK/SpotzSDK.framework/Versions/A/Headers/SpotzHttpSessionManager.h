@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Localz Pty Ltd. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
+@import UIKit;
+@import Foundation;
+
+#import "SpotzMacros.h"
 
 @protocol SpotzHttpSessionManagerDelegate<NSObject>
 - (void) networkConnectionChanged:(BOOL) isConnected;
@@ -19,11 +21,14 @@
 @interface SpotzHttpSessionManager : NSObject
 @property (nonatomic,assign) id<SpotzHttpSessionManagerDelegate> delegate;
 @property (nonatomic) BOOL isConnected;
+@property (nonatomic) BOOL isBackground; // set all completion call to background mode
 
 + (SpotzHttpSessionManager *) instanceWithBaseURL:(NSURL *)baseURL projectId:(NSString *)projectId projectKey:(NSString *)projectKey;
 - (SpotzHttpSessionManager *) initWithBaseURL:(NSURL *)url projectId:(NSString *)projectId projectKey:(NSString *)projectKey;
 
 - (void) setTimeoutInterval:(NSTimeInterval) timeInterval;
+
+- (void) secureUsingJwt;
 
 - (NSURLSessionDataTask *)secureApiPOST:(NSString *)URLString deviceId:(NSString *)deviceId parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)apiPOST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;

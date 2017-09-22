@@ -44,6 +44,26 @@ extern NSString * const SpotzInsideSiteGeoNotification;
 extern NSString * const SpotzOutsideSiteGeoNotification;
 
 /**
+ *  Notification when real time init is successfully and first location has been transmitted
+ */
+extern NSString * const SpotzRTInitSuccessNotification;
+
+/**
+ *  Notification when realtime spotz is found.
+ */
+extern NSString * const SpotzRTInsideNotification;
+
+/**
+ *  Notification when realtime spotz is no longer detected.
+ */
+extern NSString * const SpotzRTOutsideNotification;
+
+/**
+ *  Notification when realtime spotz remains found after a certain x period.
+ */
+extern NSString * const SpotzRTDwellNotification;
+
+/**
  *  Notification when a returned data exists during enter/exit Spot events.
  *  When available and enabled, the response from the extension call is available in userInfo["response"].
  *  response is nil if there was any error and empty NSDictionary object if there was no response/event is not enabled
@@ -101,3 +121,9 @@ extern NSString * const SpotzNetworkReachabilityStateChangeNotification;
  *  The location state is available in userInfo["state"] as NSNumber(SpotzLocationServicesState).
  */
 extern NSString * const SpotzLocationServicesStateChangeNotification;
+
+/**
+ *  Notification of background location connection state
+ *  The new status is available in userInfo["state"]
+ */
+extern NSString * const SpotzBGLocationConnectionStateChangeNotification;
