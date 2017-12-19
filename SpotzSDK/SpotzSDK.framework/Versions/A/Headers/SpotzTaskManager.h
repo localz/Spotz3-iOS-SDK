@@ -17,4 +17,5 @@
 - (BOOL) isRunning;
 
 - (void) stopBackgroundTask;
++ (void) runSafeOnMainThread:(void (^)(void))block;
 @end
