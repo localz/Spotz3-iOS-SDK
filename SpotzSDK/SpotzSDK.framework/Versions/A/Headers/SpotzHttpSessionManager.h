@@ -9,8 +9,6 @@
 @import UIKit;
 @import Foundation;
 
-#import "SpotzMacros.h"
-
 @protocol SpotzHttpSessionManagerDelegate<NSObject>
 - (void) networkConnectionChanged:(BOOL) isConnected;
 @optional
