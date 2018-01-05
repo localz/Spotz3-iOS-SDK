@@ -17,9 +17,14 @@ How to use the SDK
 
 **1. Set authorization message**
 
-For iOS 8 or later, please add the following key to Info.plist with a message that will be presented to the user when they first start the app.
+For iOS 9 or later, please add the following key to Info.plist with a message that will be presented to the user when they first start the app.
 ```
-NSLocationAlwaysUsageDescription
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>To determine your location when on the job</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>To determine your location when on the job while app is in use</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>To determine your location when on the job</string>
 ```
 
 For location update while app is the background only, in Xcode you will need to enable `Background Modes` and `Location updates`. You will also need to enter the necessary reason for requiring background location update in the app description, when submitting to the AppStore.
