@@ -9,6 +9,12 @@
 @import UIKit;
 @import Foundation;
 
+typedef enum {
+    SpotzHttpSessionAuthNone = 1,
+    SpotzHttpSessionAuthBasic,
+    SpotzHttpSessionAuthOAuth2
+} SpotzHttpSessionAuthType;
+
 @protocol SpotzHttpSessionManagerDelegate<NSObject>
 - (void) networkConnectionChanged:(BOOL) isConnected;
 @optional
@@ -26,14 +32,19 @@
 
 - (void) setTimeoutInterval:(NSTimeInterval) timeInterval;
 
-- (void) secureUsingJwt;
-
+- (NSURLSessionDataTask *)secureApiPOST:(NSString *)URLString deviceId:(NSString *)deviceId auth:(SpotzHttpSessionAuthType)authType parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)secureApiPOST:(NSString *)URLString deviceId:(NSString *)deviceId parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)apiPOST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+- (NSURLSessionDataTask *)secureApiPUT:(NSString *)URLString deviceId:(NSString *)deviceId auth:(SpotzHttpSessionAuthType)authType parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)secureApiPUT:(NSString *)URLString deviceId:(NSString *)deviceId parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)apiPUT:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+- (NSURLSessionDataTask *)secureApiGET:(NSString *)URLString deviceId:(NSString *)deviceId auth:(SpotzHttpSessionAuthType)authType parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)secureApiGET:(NSString *)URLString deviceId:(NSString *)deviceId parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)apiGET:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+- (NSURLSessionDataTask *)secureApiDELETE:(NSString *)URLString deviceId:(NSString *)deviceId auth:(SpotzHttpSessionAuthType)authType parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)secureApiDELETE:(NSString *)URLString deviceId:(NSString *)deviceId parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)apiDELETE:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
