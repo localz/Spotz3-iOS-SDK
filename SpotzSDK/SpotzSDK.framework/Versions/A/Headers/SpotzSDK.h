@@ -35,7 +35,7 @@
  *
  *  @return Returns a singleton instance of SpotzSDK
  */
-+ (nonnull SpotzSDK *) shared;
++ (SpotzSDK * _Nonnull) shared;
 
 /**
  *  Initialises the service and registers the device with the given API Key and client Key. Must be run to initialise SpotzSDK.
@@ -47,7 +47,7 @@
  *
  *  @warning You will need to call @link startSpotz @/link in order to start monitoring for Spots. The startSpotz should be run inside or after spotzInitSuccessful delegate is called.
  */
-+ (void) initWithAppId:(nonnull NSString *)appId appKey:(nonnull NSString *)appKey delegate:(nullable id)delegate config:(nullable NSDictionary *)config;
++ (void) initWithAppId:(NSString * _Nonnull)appId appKey:(NSString * _Nonnull)appKey delegate:(id _Nullable)delegate config:(NSDictionary * _Nullable)config;
 
 /**
  *  Initialises location services and Spots. This must be run to register all Spots. We recommend this to be called at the point where you are ready to prompt user to enable location services (if not yet enabled previously). This will also download the closest site's data
@@ -71,21 +71,21 @@
  *  Returns all spots retrieved based on the default/selected site.
  *  @return Retuns array of SpotzData at the current site. Returns nil if closest site is unknown or spots have not yet been retrieved
  */
-- (nullable NSArray *) spotsAtCurrentSite;
+- (NSArray * _Nullable) spotsAtCurrentSite;
 
 /**
  *  Returns the current registered site details
  *
  *  @return Returns the site details of the current site
  */
-- (nullable SpotzSiteDetails *) currentSite;
+- (SpotzSiteDetails * _Nullable) currentSite;
 
 /**
  *  Retrieves all available sites
  *
  *  @return Returns an array of available SpotzSiteDetails
  */
-- (nullable NSArray *) availableSites;
+- (NSArray * _Nullable) availableSites;
 
 /**
  *  Change current site to the given siteId. Upon successful update, it will monitor all Spots inside the site and retrigger the spotzSiteInitSuccessful delegate as well as spotzSiteChangedToSite:error: delegate
@@ -93,40 +93,40 @@
  *  @param siteId     siteId to change to
  *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: The error object describing the error that occurred, or nil if no errors.
  */
-- (void) changeCurrentSiteId:(nonnull NSString *)siteId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
+- (void) changeCurrentSiteId:(NSString * _Nonnull)siteId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Returns true if device is inside the spot
  * @param name Spot's name
  * @return true if inside, false if outside or not yet detected
  */
-- (BOOL) isInsideSpotWithName:(nonnull NSString *)name;
+- (BOOL) isInsideSpotWithName:(NSString * _Nonnull)name;
 
 /**
  * Returns true if device is inside the spot
  * @param spotId Spot's id
  * @return true if inside, false if outside or not yet detected
  */
-- (BOOL) isInsideSpotWithId:(nonnull NSString *)spotId;
+- (BOOL) isInsideSpotWithId:(NSString * _Nonnull)spotId;
 
 /**
  * Returns true if device is inside a spot with the given site ID
  * @param siteId Site ID
  * @return true if inside, false if outside or not yet detected
  */
-- (BOOL) isInsideSpotAtSiteId:(nonnull NSString *)siteId;
+- (BOOL) isInsideSpotAtSiteId:(NSString * _Nonnull)siteId;
 
 /**
  * Returns list of SpotzData that are within proximity
  * @return list of SpotzData
  */
-- (NSArray * _Nullable)insideSpots;
+- (NSArray * _Nullable) insideSpots;
 
 /**
  * Get current device's location.
  * @return current device's location. Nil if not available.
  */
-- (CLLocation *) currentLocation;
+- (CLLocation * _Nullable) currentLocation;
 
 /**
  * Reset Spots detected. This will re-trigger all the notifications if the device is within a particular spot. Ensure this is not called inside SpotzInsideNotification notification.
@@ -172,7 +172,7 @@
  *
  *  @return The Spotz's device ID assigned to this device
  */
-- (nullable NSString *)deviceId;
+- (NSString * _Nullable) deviceId;
 
 /**
  *  Records feedback ratings for the project/app. This is a simple rating recording function and takes in a numerical rating value which range is to be defined by the developer
@@ -183,7 +183,7 @@
  *  @param module     (optional) the module name associated with this rating. e.g. Retail Module, Click&Collect, etc
  *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes two arguments: the error object describing the error that occurred or nil if no errors, and a feedbackId which is returned by Spotz Platform once feedback is successfully recorded.
  */
-- (void) sendFeedbackWithRating:(int)rating message:(nullable NSString *)message attributes:(nullable NSDictionary *)attributes module:(nullable NSString *)module completion:(void(^ _Nullable)(NSError * _Nullable error, NSString * _Nullable feedbackId))completion;
+- (void) sendFeedbackWithRating:(int)rating message:(NSString * _Nullable)message attributes:(NSDictionary * _Nullable)attributes module:(NSString * _Nullable)module completion:(void(^ _Nullable)(NSError * _Nullable error, NSString * _Nullable feedbackId))completion;
 
 /**
  *  Associates the current device with a custom identity. Note that if the app is reinstalled, deviceId will need to be re-associated with the identity.
@@ -191,7 +191,7 @@
  *  @param identityId identity to be assigned to this device e.g. customerId/token/email
  *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the error object describing the error that occurred.
  */
-- (void) identity:(nonnull NSString *)identityId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
+- (void) identity:(NSString * _Nonnull)identityId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
 /**
  *  Removes identity that is mapped to this device
@@ -206,7 +206,7 @@
  *  @param type Extension type in spotz console
  *  @param data Extension data (key/value) to be attached to this device
  */
-- (void) updateExtension:(nonnull NSString *)name type:(NSString * _Nonnull)type data:(NSDictionary * _Nonnull)data;
+- (void) updateExtension:(NSString * _Nonnull)name type:(NSString * _Nonnull)type data:(NSDictionary * _Nonnull)data;
 
 /**
  * Checks status of location services
@@ -310,7 +310,7 @@
 - (void) backgroundLocationRecordInterval:(int)interval;
 
 #pragma mark - App hooks
-- (void)appPerformFetchWithCompletionHandler:(void (^ _Nonnull)(UIBackgroundFetchResult))completionHandler;
+- (void) appPerformFetchWithCompletionHandler:(void (^ _Nonnull)(UIBackgroundFetchResult))completionHandler;
 
 #pragma mark - Customer
 /**
@@ -318,16 +318,16 @@
  *
  *  @return Returns the details of the current logged in customer
  */
-- (nullable SpotzCustomer *) currentCustomer;
+- (SpotzCustomer * _Nullable)currentCustomer;
 
 
-- (void) registerCustomer:(NSString * _Nonnull) username password:(NSString * _Nonnull) password otherDetails:(NSDictionary * _Nullable) otherDetails completion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
+- (void) registerCustomer:(NSString * _Nonnull)username password:(NSString * _Nonnull) password otherDetails:(NSDictionary * _Nullable) otherDetails completion:(void(^ _Nullable)(NSError * _Nullable error,SpotzCustomer * _Nullable customer))completion;
 
-- (void) authenticateCustomer:(NSString * _Nonnull) username password:(NSString * _Nonnull) password completion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
+- (void) authenticateCustomer:(NSString * _Nonnull)username password:(NSString * _Nonnull)password completion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
 
 - (void) retrieveMyCustomerDetailsWithCompletion:(void(^ _Nullable)(NSError * _Nullable error, SpotzCustomer * _Nullable customer))completion;
 
-- (void) logoutCustomer:(NSString * _Nonnull) customerId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
+- (void) logoutCustomer:(NSString * _Nonnull)customerId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Registers custom userId to be used as the tracking identifier
@@ -347,16 +347,17 @@
  * Track ETA based on trackId and location. Result will be returned completion callback of shape (error, data), where data should look like: {trackId, etaSeconds, etaMinutes, etaFrom, etaTo}
  * @param trackId to get ETA for
  */
-- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng completion:(void(^ _Nullable)(NSError * _Nullable error,NSDictionary * _Nullable data)) completion;
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng completion:(void(^ _Nullable)(NSError * _Nullable error,NSDictionary * _Nullable data))completion;
 
 /**
  * Retrieves ETA based on track ID and the given location array of (lat,lng). Result will be returned completion callback of shape (error, data), where data should look like: {trackId, etaSeconds, etaMinutes, etaFrom, etaTo}
  * @param trackId
  * @param location array to track from (lat,lng)
  */
-- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng location:(NSArray * _Nonnull)latlng completion:(void(^_Nullable)(NSError * _Nullable error,NSDictionary * _Nullable data)) completion;
+- (void) getEtaTrackId:(NSString * _Nonnull)trackId destination:(NSArray * _Nonnull)destLatLng location:(NSArray * _Nonnull)latlng completion:(void(^_Nullable)(NSError * _Nullable error,NSDictionary * _Nullable data))completion;
 
 #ifdef DEBUG
-- (NSArray * _Nonnull) monitoredGeofences;
+- (NSArray * _Nonnull)monitoredGeofences;
 #endif
+
 @end
