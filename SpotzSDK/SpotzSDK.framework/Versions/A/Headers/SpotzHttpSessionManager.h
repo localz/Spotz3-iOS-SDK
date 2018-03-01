@@ -25,7 +25,6 @@ typedef enum {
 @interface SpotzHttpSessionManager : NSObject
 @property (nonatomic,assign) id<SpotzHttpSessionManagerDelegate> delegate;
 @property (nonatomic) BOOL isConnected;
-@property (nonatomic) BOOL isBackground; // set all completion call to background mode
 
 + (SpotzHttpSessionManager *) instanceWithBaseURL:(NSURL *)baseURL projectId:(NSString *)projectId projectKey:(NSString *)projectKey;
 - (SpotzHttpSessionManager *) initWithBaseURL:(NSURL *)url projectId:(NSString *)projectId projectKey:(NSString *)projectKey;
