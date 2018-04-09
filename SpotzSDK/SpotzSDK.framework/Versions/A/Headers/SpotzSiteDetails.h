@@ -5,7 +5,7 @@
 //  Created by Melvin Artemas on 21/05/2015.
 //  Copyright (c) 2015 Localz Pty Ltd. All rights reserved.
 //
-@import CoreLocation;
+#import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
 @interface SpotzSiteDetails : NSObject<NSCopying,NSCoding>

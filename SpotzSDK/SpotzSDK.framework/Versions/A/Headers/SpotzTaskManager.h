@@ -6,7 +6,7 @@
 //  Copyright © 2015 Localz Pty Ltd. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 @interface SpotzTaskManager : NSObject
 @property (nonatomic,strong) NSString *name;

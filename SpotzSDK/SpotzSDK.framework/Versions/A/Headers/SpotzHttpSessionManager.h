@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Localz Pty Ltd. All rights reserved.
 //
 
-@import UIKit;
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 typedef enum {
     SpotzHttpSessionAuthNone = 1,

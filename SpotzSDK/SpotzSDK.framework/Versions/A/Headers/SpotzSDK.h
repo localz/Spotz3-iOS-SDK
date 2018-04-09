@@ -9,9 +9,9 @@
  * have access to this product or related documents.
  */
 
-@import UIKit;
-@import CoreLocation;
-@import CoreBluetooth;
+#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
 #import <Foundation/Foundation.h>
 #import "SpotzErrorType.h"
