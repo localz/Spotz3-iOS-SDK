@@ -104,6 +104,11 @@ extern NSString * const SpotzErrorNotification;
 extern NSString * const SpotzSiteChangedNotification;
 
 /**
+ *  Notification of when the SDK receives a 401 error likely due to tokens expiring.
+ */
+extern NSString * const SpotzUnexpectedLogoutNotification;
+
+/**
  *  Notification when bluetooth services changes status.
  *  The new status is available in userInfo["enabled"] with value 1 or 0
  */
