@@ -64,6 +64,11 @@ extern NSString * const SpotzRTOutsideNotification;
 extern NSString * const SpotzRTDwellNotification;
 
 /**
+ *  Notification when realtime spotz starts or stops high accuracy tracking.
+ */
+extern NSString * const SpotzRTTrackingNotification;
+
+/**
  *  Notification when a returned data exists during enter/exit Spot events.
  *  When available and enabled, the response from the extension call is available in userInfo["response"].
  *  response is nil if there was any error and empty NSDictionary object if there was no response/event is not enabled
