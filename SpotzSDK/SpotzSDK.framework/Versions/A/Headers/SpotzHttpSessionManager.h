@@ -21,7 +21,7 @@ typedef enum {
 - (NSDictionary *) additionalSecureHeader;
 @end
 
-@interface SpotzHttpSessionManager : NSObject
+@interface SpotzHttpSessionManager : NSObject <NSURLSessionDelegate>
 @property (nonatomic,assign) id<SpotzHttpSessionManagerDelegate> delegate;
 @property (nonatomic) BOOL isConnected;
 
