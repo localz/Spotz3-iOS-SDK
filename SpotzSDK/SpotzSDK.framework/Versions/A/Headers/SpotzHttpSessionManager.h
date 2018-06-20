@@ -14,7 +14,7 @@ typedef enum {
     SpotzHttpSessionAuthOAuth2
 } SpotzHttpSessionAuthType;
 
-@protocol SpotzHttpSessionManagerDelegate<NSObject>
+@protocol SpotzHttpSessionManagerDelegate<NSObject, NSURLSessionDelegate>
 - (void) networkConnectionChanged:(BOOL) isConnected;
 @optional
 - (NSDictionary *) additionalHeader;
