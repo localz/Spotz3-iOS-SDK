@@ -337,7 +337,7 @@
 
 #pragma mark - Device Login
 
-- (void) loginDeviceWithJWTToken:(NSString * _Nonnull)token;
+- (void) setJWT:(NSString * _Nonnull)jwtToken refreshToken:(NSString * _Nonnull)refreshToken;
 
 - (void) logoutDevice;
 
