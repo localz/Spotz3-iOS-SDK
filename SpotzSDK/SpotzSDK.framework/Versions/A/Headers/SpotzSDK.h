@@ -336,6 +336,7 @@
 - (void) registerCustomUserId:(NSString * _Nonnull)customUserId;
 
 #pragma mark - Device Login
+- (void) loginDeviceWithJWTToken:(NSString * _Nonnull)token __deprecated_msg("Please use setJWT method instead");
 
 - (void) setJWT:(NSString * _Nonnull)jwtToken refreshToken:(NSString * _Nonnull)refreshToken;
 
