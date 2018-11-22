@@ -8,7 +8,7 @@
 @import CoreLocation;
 #import <Foundation/Foundation.h>
 
-@interface SpotzSiteDetails : NSObject<NSCopying,NSCoding>
+@interface SpotzSiteDetails : NSObject <NSCopying,NSSecureCoding>
 @property (nonatomic,copy,readwrite) NSString * _Nonnull siteId;
 @property (nonatomic,copy,readwrite) NSString * _Nonnull name;
 @property (nonatomic,copy,readwrite) NSString * _Nullable address1;
