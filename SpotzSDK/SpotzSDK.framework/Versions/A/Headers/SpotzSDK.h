@@ -213,7 +213,7 @@
  * Returns bluetooth state
  * @return enable is true if it is on, false if not.
  */
-- (BOOL) checkBluetoothEnabled:(void(^ _Nullable)(BOOL enable,CBCentralManagerState state))completion;
+- (BOOL) checkBluetoothEnabled:(void(^ _Nullable)(BOOL enable,CBManagerState state))completion;
 
 /**
  * Prompt user to enable location. It will only prompts user when location status is not yet determined.
