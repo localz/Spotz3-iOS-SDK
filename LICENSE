@@ -1,0 +1,153 @@
+End User Customer Agreement
+
+Localz License Agreement
+
+Last Modified 14 July 2014
+
+IMPORTANT: PLEASE READ THIS END USER LICENSE AGREEMENT CAREFULLY. IT IS
+VERY IMPORTANT THAT YOU, OR THE ENTITY YOU REPRESENT (COLLECTIVELY,
+THE "CUSTOMER", “YOU”, “YOUR” AND “YOURSELF”) HAVE BEEN REGISTERED AS
+THE END USER FOR THE PURPOSES OF THIS LICENSE AGREEMENT. IF YOU DO
+NOT HAVE THE AUTHORITY TO BIND THE CUSTOMER, DO NOT AGREE TO ANY OF
+THE TERMS BELOW AS LOCALZ IS UNABLE TO PROVIDE SOFTWARE AND RELATED
+SERVICES TO THE CUSTOMER WITHOUT AGREEMENT TO THESE TERMS.
+
+Localz Pty Ltd ABN 49 166 395 062 and/or its authorized and appointed affiliates (collectively,
+“Localz”, “we”, “us”, “our”, or “Affiliate”) license this software to you on the condition that you
+accept all of the terms contained in this License Agreement (“Agreement”) and any additional
+limitations on the license set forth in any supplemental license agreement accompanying the
+product, made available at the time of your contract. To the extent of any conflict between the
+terms of this Agreement and any supplemental license agreement, the supplemental license
+agreement shall apply. By downloading, installing, or using the software, you are binding
+yourself to the Agreement. If you do not agree to all of the terms of the Agreement, then
+Localz is unwilling to license the software to and you may not download, install or use the
+software.
+
+The following terms of the agreement govern your use of the Licensed Software (defined
+below), except to the extent: (a) there is a separate signed contract between you and Localz
+governing your use of the software. To the extent of a conflict between the provisions of the
+foregoing documents, the order of precedence shall be (1) the signed contract, and (2) the
+Agreement. For purposes of this Agreement, "Software" shall mean computer programs,
+software development kits (SDKs), application programming interfaces (APIs), hosted
+services and related software components as provided to you by an approved source, and
+any upgrades, updates, bug fixes or modified versions thereto (collectively, "Upgrades"), any
+of the same which has been relicensed under the Localz software transfer and re-licensing
+policy (as may be amended by Localz from time to time) or backup copies of any of the
+foregoing.
+
+License grant. Subject to compliance with the terms and conditions of the Agreement,
+Localz grants to the Customer the following rights: (i) a non-exclusive, non-transferable
+license to distribute, reproduce, perform and display copies of the Licensed Software solely in
+support of Customer’s business operations to create or integrate Customer’s products with
+the Localz software platform(s). In the event that Customer has signed a separate
+standalone agreement for the Licensed Software, such standalone agreement shall expressly
+supersede the terms and conditions of this License Agreement. The foregoing is subject to
+the following: Customer agrees to: (i) display Customer’s own valid copyright notice on
+Customer products; (ii) Customer shall not remove or obscure any copyright, trademark, or
+patent notices that appear on the Licensed Software as delivered; (iii) Customer shall
+indemnify, hold harmless, and defend Localz from and against any claims or lawsuits,
+including attorney’s fees, that arise or result from the use or distribution of Customer
+products; APIs or other works developed using the Licensed Software; and (iv) acknowledge
+and agree that Localz reserves all rights not expressly granted herein.
+
+General Limitations. This is a license, not a transfer of title, to the software and
+documentation, and Localz retains ownership of all copies of the software and
+documentation. Customer acknowledges that the software and documentation contain trade
+secrets of Localz or its suppliers or licensors, including but not limited to the specific internal
+design and structure of individual programs and associated interface information. Except as
+otherwise expressly provided under the Agreement, Customer shall have no right, and
+Customer specifically agrees not to:
+(i) rent, lease, sublicense or create derivative works based upon the Software, or permit third
+parties to do the same;
+(i) reverse engineer or decompile, decrypt, disassemble or otherwise reduce the Software to
+human-readable form, except for the purposes of Customer system interoperability and the
+extent otherwise expressly permitted under applicable law notwithstanding this restriction or
+except to the extent that Localz is legally required to permit such specific activity pursuant to
+any applicable open source license;
+(iii) disclose, provide, or otherwise make available trade secrets contained within the Software
+and Documentation in any form to any third party without the prior written consent of Localz.
+Customer shall implement reasonable security measures to protect such trade secrets.
+
+Third Parties. Localz uses third parties to perform certain activities including the hosting of
+services and may change its provider from time to time. All access to hosted services will be
+subject to the Agreement and Localz acceptable use policy.
+
+Third Party Programs. The Licensed Software may contain third party software
+programs (“Third Party Programs”) that are available under open source or free software
+licenses. This License Agreement does not alter any rights or obligations Customer may have
+under those open source or free software licenses. Notwithstanding anything to the contrary
+contained in such licenses, the disclaimer of warranties and the limitation of liability provisions
+in this License Agreement shall apply to such Third Party Programs.
+
+Audit. An auditor, selected by Localz and reasonably acceptable to Customer, may, upon
+reasonable notice and during normal business hours, but not more often than once each
+year, inspect Customer records and deployment in order to confirm that Customer use of the
+Licensed Software complies with the Agreement. Localz shall bear the costs of any such
+audit, except where the audit demonstrates non-compliant usage of the Licensed Software. In
+such case, you shall reimburse Localz for the auditor’s reasonable actual fees for such audit.
+
+Term and Termination. The Agreement and the license granted herein shall remain
+effective until terminated. The Agreement shall automatically terminate upon your breach of
+any term contained herein. Upon termination, Customer shall immediately stop using and
+destroy all copies of the Licensed Software.
+The following provisions of the Agreement survive termination: License Restrictions and any
+other restrictions on use of intellectual property, General Limitations, Warranty Disclaimer,
+Limitation of Liability, Development Disclaimer & Indemnification, Survival, and General.
+
+Warranty Disclaimer. The licensed software is provided “as is,” exclusive of any
+warranty, including, without limitation, any implied warranty of merchantability, fitness for a
+particular purpose, non-infringement, or any other warranty, whether expressed or implied.
+Furthermore, Localz shall not be liable under any theory for any damages suffered by
+Customer or any user of the licensed software or any integration, APIs or the like provided by
+Customer which were developed using the licensed software.
+
+Development Disclaimer and Indemnification. Localz shall not be responsible for
+your integration, API development or any other authorised use or programming or
+development activities using the licensed software. Unless you use the appropriate degree of
+skill and care, development and programming activities, Customer may experience or cause
+errors or problems in the use or operation of the Localz platform or other software programs.
+Customer may use the licensed software at your sole risk and Localz shall have no liability for
+any failure of the licensed software and/or issues associated with the Localz platform and/or
+any Localz software based on your failure to properly develop, program, install, configure and
+monitor your integration, APIs or the like. Customer shall indemnify, defend and hold Localz
+harmless from and against any and all liabilities, damages, costs and expenses incurred by
+Localz as a result of your breach of this agreement.
+
+Limited liability. To the maximum extent permitted by applicable law and regardless of
+whether any remedy set forth herein fails of its essential purpose, in no event will Localz or its 
+licensors, resellers, suppliers or agents be liable to you for (i) any costs of procurement of
+substitute or replacement goods and services, loss of profits, loss of use, loss of or corruption
+to data, business interruption, loss of production, loss of revenues, loss of contracts, loss of
+goodwill, or anticipated savings or wasted management and staff time; or (ii) any special,
+consequential, incidental or indirect damages whether arising directly or indirectly out of this
+license agreement, even if Localz or its licensors, resellers, suppliers or agents has been
+advised such damages might occur. In no case shall Localz’s liability exceed the fees you
+paid for the licensed software giving rise to the claim.
+Nothing in this agreement shall operate so as to exclude or limit Localz liability to you for
+death or personal injury arising out of negligence or for any other liability which cannot be
+excluded or limited by law. The disclaimers and limitations set forth above will apply
+regardless of whether or not you accept the licensed software, or any updates or upgrades
+thereto.
+
+Customer acknowledges and agrees that Localz has set its prices and entered into the
+Agreement in reliance upon the disclaimers of warranty and the limitations of liability set forth
+herein, that the same reflect an allocation of risk between the parties (including the risk that a
+contract remedy may fail of its essential purpose and cause consequential loss), and that the
+same form an essential basis of the bargain between the parties.
+
+Assignment. Customer may not assign the rights granted hereunder or this License
+Agreement, in whole or in part and whether by operation of contract, law or otherwise, without
+Localz prior express written consent.
+
+Controlling Law, Jurisdiction. This License Agreement will be governed by the laws of
+Australia. Unless expressly prohibited by local law, the Agreement and Warranties are
+controlled by and construed under the laws of the State of Victoria, Australia. Notwithstanding
+any conflicts of law provisions, the State and federal courts of Victoria shall have exclusive
+jurisdiction over any claim arising under the Agreement or Warranties. Such governing laws
+are exclusive of any provisions of the United Nations Convention on Contracts for Sale of
+Goods, including any amendments thereto, and without regard to principles of conflicts of law.
+If any provision of this License Agreement is found partly or wholly illegal or unenforceable,
+such provision shall be enforced to the maximum extent permissible, and remaining
+provisions of this License Agreement shall remain in full force and effect. A waiver of any
+breach or default under this License Agreement shall not constitute a waiver of any other
+subsequent breach or default.
