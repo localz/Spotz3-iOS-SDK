@@ -104,14 +104,14 @@
 
 /**
  * Returns true if device is inside the spot
- * @param name Spot's id
+ * @param spotId Spot's id
  * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotWithId:(nonnull NSString *)spotId;
 
 /**
  * Returns true if device is inside a spot with the given site ID
- * @param name Site ID
+ * @param siteId Site ID
  * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotAtSiteId:(nonnull NSString *)siteId;
@@ -162,6 +162,15 @@
 - (void) stopSpotz;
 
 /**
+ * Monitor a whitelist of site IDs. This will replace any existing site IDs being monitored.
+ * This is only available when the SDK is started in static monitoring mode.
+ * To start the SDK in static monitoring mode use the initalisation config `@{ @"staticMonitoring":true }`
+ *
+ * @param siteIds   An array of all siteIds to be monitored.
+ */
+- (void) monitorSiteIds:(nonnull NSArray<NSString *>*)siteIds;
+
+/**
  *  Returns the device ID assigned to this device
  *
  *  @return The Spotz's device ID assigned to this device
@@ -183,7 +192,6 @@
  *  Associates the current device with a custom identity. Note that if the app is reinstalled, deviceId will need to be re-associated with the identity.
  *
  *  @param identityId identity to be assigned to this device e.g. customerId/token/email
- *  @param attributes additional information to be associated with this device. Useful when passing additional info to third party extensions.
  *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the error object describing the error that occurred.
  */
 - (void) identity:(nonnull NSString *)identityId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
@@ -221,6 +229,11 @@
 - (void) requestLocationServicesPrompt;
 
 /**
+* Prompt user to enable bluetooth. It will only prompts user when the bluetooth status is not yet determined.
+*/
+- (void) requestBluetoothServicesPrompt;
+
+/**
  * Set this to false to stop SDK from sending Spotz events. This should be enabled if you have a third party integration.
  * Default is true
  * @param enable set to true to enable the events, false to disable it
@@ -229,7 +242,7 @@
 
 /**
  * Returns the spotz events enabled flag
- * @param true if enabled, false if not
+ * @return true if enabled, false if not
  */
 - (BOOL) isSpotzEventsEnabled;
 
