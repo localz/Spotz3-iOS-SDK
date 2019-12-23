@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
 			Copyright 2019 Localz Pty Ltd.
 			LICENSE
 	}
-	s.version = '3.3.3'
+	s.version = '3.2.8.2'
 	s.summary = 'iOS library for Localz Platform'
 	s.homepage = 'http://localz.com'
 	s.author = { 'Localz Pty Ltd' => 'info@localz.com' }
@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
 	s.requires_arc = true
 	s.source = { :git => 'https://github.com/localz/Spotz3-iOS-SDK.git' }
 	s.frameworks = 'CoreLocation','SystemConfiguration','Foundation'
-	s.dependency 'YapDatabase/Standard/Core'
+	s.dependency 'YapDatabase/Standard/Core', '3.1.4'
 end
