@@ -50,6 +50,12 @@
 + (void) initWithAppId:(nonnull NSString *)appId appKey:(nonnull NSString *)appKey delegate:(nullable id)delegate config:(nullable NSDictionary *)config;
 
 /**
+ *  Returns SpotzSDK version.
+ *  @return Returns the current SpotzSDK version
+*/
++ (nonnull NSString *) sdkVersion;
+
+/**
  *  Initialises location services and Spots. This must be run to register all Spots. We recommend this to be called at the point where you are ready to prompt user to enable location services (if not yet enabled previously). This will also download the closest site's data
  */
 - (void) startSpotz;
