@@ -110,14 +110,14 @@
 
 /**
  * Returns true if device is inside the spot
- * @param name Spot's id
+ * @param spotId Spot's id
  * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotWithId:(nonnull NSString *)spotId;
 
 /**
  * Returns true if device is inside a spot with the given site ID
- * @param name Site ID
+ * @param siteId Site ID
  * @return true if inside, false if outside or not yet detected
  */
 - (BOOL) isInsideSpotAtSiteId:(nonnull NSString *)siteId;
@@ -240,7 +240,7 @@
 
 /**
  * Returns the spotz events enabled flag
- * @param true if enabled, false if not
+ * @return true if enabled, false if not
  */
 - (BOOL) isSpotzEventsEnabled;
 
