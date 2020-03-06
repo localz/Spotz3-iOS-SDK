@@ -50,12 +50,6 @@
 + (void) initWithAppId:(nonnull NSString *)appId appKey:(nonnull NSString *)appKey delegate:(nullable id)delegate config:(nullable NSDictionary *)config;
 
 /**
- *  Returns SpotzSDK version.
- *  @return Returns the current SpotzSDK version
-*/
-+ (nonnull NSString *) sdkVersion;
-
-/**
  *  Initialises location services and Spots. This must be run to register all Spots. We recommend this to be called at the point where you are ready to prompt user to enable location services (if not yet enabled previously). This will also download the closest site's data
  */
 - (void) startSpotz;
@@ -81,10 +75,33 @@
 
 /**
  *  Returns the current registered site details
- *
+ *  @deprecated use closestSite instead
  *  @return Returns the site details of the current site
  */
 - (nullable SpotzSiteDetails *) currentSite;
+
+/**
+ * Returns the closest site
+ * @return Returns the site details of the closest site
+ */
+- (nullable SpotzSiteDetails *) closestSite;
+
+/**
+ * Returns last checked user location
+ */
+- (nullable CLLocation *) lastUserLocation;
+
+/**
+ * Returns the closest registered sites. This may be more than one sites.
+ * @return Returns the closest registered sites
+ */
+- (nullable NSArray *) registeredSites;
+
+/**
+ * Returns the currently registered spots.
+ * @return Returns the registered spotzs
+ */
+- (nullable NSArray *) registeredSpots;
 
 /**
  *  Retrieves all available sites
@@ -189,7 +206,6 @@
  *  Associates the current device with a custom identity. Note that if the app is reinstalled, deviceId will need to be re-associated with the identity.
  *
  *  @param identityId identity to be assigned to this device e.g. customerId/token/email
- *  @param attributes additional information to be associated with this device. Useful when passing additional info to third party extensions.
  *  @param completion A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the error object describing the error that occurred.
  */
 - (void) identity:(nonnull NSString *)identityId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
