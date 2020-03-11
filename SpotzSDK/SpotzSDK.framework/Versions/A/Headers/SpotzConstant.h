@@ -102,6 +102,6 @@ extern NSString * const SpotzNetworkReachabilityStateChangeNotification;
  */
 extern NSString * const SpotzLocationServicesStateChangeNotification;
 
-//#ifdef DEBUG
-extern NSString * const SpotzCurrentMonitoredSitesNotification;
-//#endif
+#ifdef DEBUG
+    extern NSString * const SpotzCurrentMonitoredSitesNotification;
+#endif
