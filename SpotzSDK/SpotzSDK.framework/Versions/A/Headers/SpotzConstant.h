@@ -17,31 +17,37 @@ typedef enum {
  *  Notification when spotz is found. SpotzData object of the triggered Spot is available in userInfo["data"].
  */
 extern NSString * const SpotzInsideNotification;
+extern NSString * const SPOTZ_INSIDE_NOTIFICATION;
 
 /**
  *  Notification when previously found spotz is no longer detected. SpotzData object of the triggered Spot is available in userInfo["data"].
  */
 extern NSString * const SpotzOutsideNotification;
+extern NSString * const SPOTZ_OUTSIDE_NOTIFICATION;
 
 /**
  *  Notification when ranging information available. SpotzData object of the triggered Spot is available in userInfo["data"].
  */
 extern NSString * const SpotzRangingNotification;
+extern NSString * const SPOTZ_RANGING_NOTIFICATION;
 
 /**
  *  Notification when ranging information available. This works on top of data collected from SpotzRangingNotification data.
  */
 extern NSString * const SpotzClosestBeaconNotification;
+extern NSString * const SPOTZ_CLOSEST_BEACON_NOTIFICATION;
 
 /**
  *  Notification when site geofence is enabled, and enter event is detected. SpotzSiteDetails object is available in userInfo["data"].
  */
 extern NSString * const SpotzInsideSiteGeoNotification;
+extern NSString * const SPOTZ_INSIDE_SITE_GEO_NOTIFICATION;
 
 /**
  *  Notification when site geofence is enabled, and exit event is detected. SpotzSiteDetails object is available in userInfo["data"].
  */
 extern NSString * const SpotzOutsideSiteGeoNotification;
+extern NSString * const SPOTZ_OUTSIDE_SITE_GEO_NOTIFICATION;
 
 /**
  *  Notification when a returned data exists during enter/exit Spot events.
@@ -56,44 +62,42 @@ extern NSString * const SpotzOutsideSiteGeoNotification;
  *  Spotz only returns the last response from the third party even when there were multiple events during offline.
  */
 extern NSString * const SpotzExtensionNotification;
-
+extern NSString * const SPOTZ_EXTENSION_NOTIFICATION;
 /**
  *  Notification when Spotz has been initialised. Error object, if any, is available in userInfo["error"].
  */
 extern NSString * const SpotzInitNotification;
-
+extern NSString * const SPOTZ_INIT_NOTIFICATION;
 /**
  *  Notification when Spotz has completed notification.
  */
 extern NSString * const SpotzSetupCompletedNotification;
-
-/**
- *  Notification when Spotz Site initialisation has been completed.
- */
-extern NSString * const SpotzSiteInitNotification;
+extern NSString * const SPOTZ_SETUP_COMPLETED_NOTIFICATION;
 
 /**
  *  Notification when Spotz reported an error. Error is available in userInfo["error"]
  */
 extern NSString * const SpotzErrorNotification;
+extern NSString * const SPOTZ_ERROR_NOTIFICATION;
 
 /**
- *  Notification when Site change occurs. If successful, the new site's SpotzSiteDetails object is available in userInfo["site"].
- *  Error object, if any, is available in the userInfo["error"].
+ *  Notification when monitored sites change occurs. An array of SpotzSiteDetails are available in userInfo["sites"].
  */
-extern NSString * const SpotzSiteChangedNotification;
-
+extern NSString * const SpotzClosestSitesUpdateNotification;
+extern NSString * const SPOTZ_CLOSEST_SITES_UPDATE_NOTIFICATION;
 /**
  *  Notification when bluetooth services changes status.
  *  The new status is available in userInfo["enabled"] with value 1 or 0
  */
 extern NSString * const SpotzBluetoothServicesStateChangeNotification;
+extern NSString * const SPOTZ_BLUETOOTH_SERVICES_STATE_CHANGE_NOTIFICATION;
 
 /**
  *  Notification when network reachability services changes status.
  *  The new status is available in userInfo["enabled"] with value 1 or 0
  */
 extern NSString * const SpotzNetworkReachabilityStateChangeNotification;
+extern NSString * const SPOTZ_NETWORK_REACHABILITY_STATE_CHANGE_NOTIFICATION;
 
 /**
  *  Notification when location services changes status.
@@ -101,3 +105,33 @@ extern NSString * const SpotzNetworkReachabilityStateChangeNotification;
  *  The location state is available in userInfo["state"] as NSNumber(SpotzLocationServicesState).
  */
 extern NSString * const SpotzLocationServicesStateChangeNotification;
+extern NSString * const SPOTZ_LOCATION_SERVICES_STATE_CHANGE_NOTIFICATION;
+
+// Available Config Vars
+
+// Static site limit - default 5
+extern NSString * const CONFIG_STATIC_SITES_LIMIT;
+
+// Enable static site monitoring -  default 0/'false'. Set  to  1 or  'true' to enable
+extern NSString * const CONFIG_ENABLE_STATIC_SITES_MONITORING;
+
+// Environment for the SDK to point to - default to production environment
+extern NSString * const CONFIG_ENV;
+
+// Enable background processing - default 1/true. Set to 0 or 'false' to disable
+extern NSString * const CONFIG_ENABLE_BACKGROUND_PROCESSING;
+
+// Enable debug logging - default to false
+extern NSString * const CONFIG_ENABLE_DEBUG_LOG;
+
+// Number of seconds before registering beacon as exit in foreground
+extern NSString * const CONFIG_BEACON_EXIT_DELAY_IN_FOREGROUND;
+
+// Number of seconds before registering beacon as exit in background
+extern NSString * const CONFIG_BEACON_EXIT_DELAY_IN_BACKGROUND;
+
+// Disable bluetooth manager
+extern NSString * const CONFIG_ENABLE_IBEACON;
+
+// Enable beacon ranging smoothing to detect closest beacon more accurately
+extern NSString * const CONFIG_ENABLE_BEACON_RANGING_SMOOTHING;

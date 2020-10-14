@@ -13,7 +13,7 @@
 @interface SpotzData : NSObject<NSCoding>
 @property (nonatomic,strong) NSString * _Nonnull name;
 @property (nonatomic,strong) NSDictionary * _Nullable attributes;
-@property (nonatomic,strong) NSString * _Nullable spotId;
+@property (nonatomic,strong) NSString * _Nonnull spotId;
 @property (nonatomic,strong) NSString * _Nonnull siteId;
 @property (nonatomic,strong) NSArray * _Nullable beacons;
 @property (nonatomic,strong) SpotzGeoDetails * _Nullable geo;

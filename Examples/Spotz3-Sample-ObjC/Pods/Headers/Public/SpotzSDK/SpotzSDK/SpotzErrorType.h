@@ -1,1 +1,0 @@
-../../../../SpotzSDK/SpotzSDK/SpotzSDK.framework/Versions/A/Headers/SpotzErrorType.h
