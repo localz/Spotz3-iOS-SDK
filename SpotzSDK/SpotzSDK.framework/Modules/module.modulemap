@@ -1,0 +1,9 @@
+framework module SpotzSDK {
+    umbrella header "SpotzSDK.h"
+    export *
+    module * { export * }
+    
+    explicit module Common {
+        header "SpotzCommon.h"
+    }
+}
