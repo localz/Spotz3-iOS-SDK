@@ -1,0 +1,11 @@
+framework module SpotzSDK {
+  umbrella header "SpotzSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module SpotzSDK.Swift {
+    header "SpotzSDK-Swift.h"
+    requires objc
+}
